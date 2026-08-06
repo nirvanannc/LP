@@ -17,6 +17,8 @@ export const SERVICE_DETAILS = {
       signsTitle: "You might recognise…",
       approachTitle: "How Dr. Soni helps",
       forWhoTitle: "Who this is for",
+      storyTitle: "A quiet story of hope",
+      storyNote: "Shared anonymously, with permission. Every identity is always protected.",
       reassure: "Everything you share stays strictly private. Family is involved only with your consent — koi jaanega toh nahi.",
       ctaTitle: "The first step is just a conversation.",
       ctaSub: "No pressure, no labels. Reach out whenever you feel ready.",
@@ -42,6 +44,10 @@ export const SERVICE_DETAILS = {
           "Practical, everyday tools for sleep, worry and low moods.",
           "Steady follow-up so you're never left to manage it alone.",
         ],
+        story: {
+          quote: "For two years I thought this heaviness was just 'me'. A few honest conversations and the right care, and slowly the mornings stopped feeling impossible. I laugh with my family again.",
+          who: "S., Jaipur",
+        },
       },
       "de-addiction": {
         title: "De-Addiction Treatment",
@@ -62,6 +68,10 @@ export const SERVICE_DETAILS = {
           "Relapse-prevention and counselling that respects your family and values.",
           "Family guidance on how to help without pushing your loved one away.",
         ],
+        story: {
+          quote: "My husband tried to quit so many times on his own. Here, no one shamed him. Aaj usse 8 mahine ho gaye — and our home feels like home again.",
+          who: "A family member, Jaipur",
+        },
       },
       "child-adolescent": {
         title: "Child & Adolescent Psychiatry",
@@ -82,6 +92,10 @@ export const SERVICE_DETAILS = {
           "Parents guided as partners — practical ways to support at home.",
           "Coordination with school only if you wish, always with your consent.",
         ],
+        story: {
+          quote: "Mera beta mahino se chup tha, and I was so scared. With gentle sessions he slowly opened up — and I learned how to simply be there for him.",
+          who: "A parent, Jaipur",
+        },
       },
       "sexual-health": {
         title: "Sexual Health Counselling",
@@ -102,6 +116,10 @@ export const SERVICE_DETAILS = {
           "Care for both the physical and the emotional side of the concern.",
           "Couples included only if and when you want that.",
         ],
+        story: {
+          quote: "I carried this worry silently for years, too ashamed to ask anyone. One private, respectful conversation gave me the facts — and my confidence back.",
+          who: "Patient, Jaipur",
+        },
       },
       "couples-family": {
         title: "Couples & Family Counselling",
@@ -122,6 +140,10 @@ export const SERVICE_DETAILS = {
           "Culturally aware guidance that honours your family structure.",
           "Sessions paced to what your family is comfortable with.",
         ],
+        story: {
+          quote: "We were one argument away from giving up. Sitting together in that room, we finally heard each other. Ab hum phir se baat karte hain.",
+          who: "A couple, Jaipur",
+        },
       },
       "online-consultation": {
         title: "Online Consultations",
@@ -142,6 +164,10 @@ export const SERVICE_DETAILS = {
           "Simple booking over call or WhatsApp — no complicated setup.",
           "Dr. Soni will suggest an in-person visit only if it's truly needed.",
         ],
+        story: {
+          quote: "I live far from Jaipur and almost didn't reach out. The video consultation felt just as personal — jaise saamne baithe hon. It changed everything for me.",
+          who: "Patient, outside Jaipur",
+        },
       },
     },
   },
@@ -154,6 +180,8 @@ export const SERVICE_DETAILS = {
       signsTitle: "शायद आप इन्हें पहचानें…",
       approachTitle: "डॉ. सोनी कैसे मदद करते हैं",
       forWhoTitle: "यह किसके लिए है",
+      storyTitle: "उम्मीद की एक शांत कहानी",
+      storyNote: "अनुमति के साथ, गुमनाम रूप से साझा किया गया। हर पहचान हमेशा सुरक्षित रहती है।",
       reassure: "आप जो भी साझा करेंगे वह पूरी तरह निजी रहेगा। परिवार केवल आपकी सहमति से शामिल होता है — कोई जानेगा तो नहीं।",
       ctaTitle: "पहला कदम बस एक बातचीत है।",
       ctaSub: "कोई दबाव नहीं, कोई लेबल नहीं। जब भी तैयार महसूस करें, संपर्क करें।",
@@ -179,6 +207,10 @@ export const SERVICE_DETAILS = {
           "नींद, चिंता और उदासी के लिए व्यावहारिक, रोज़मर्रा के उपाय।",
           "लगातार फ़ॉलो-अप ताकि आपको इसे अकेले न संभालना पड़े।",
         ],
+        story: {
+          quote: "दो साल तक मैं समझता रहा कि यह भारीपन बस 'मैं' हूँ। कुछ ईमानदार बातचीत और सही देखभाल से, धीरे-धीरे सुबहें नामुमकिन लगनी बंद हो गईं। अब मैं फिर से अपने परिवार के साथ हँसता हूँ।",
+          who: "S., जयपुर",
+        },
       },
       "de-addiction": {
         title: "नशा-मुक्ति उपचार",
@@ -199,6 +231,10 @@ export const SERVICE_DETAILS = {
           "रिलैप्स-रोकथाम और काउंसलिंग जो आपके परिवार और मूल्यों का सम्मान करती है।",
           "परिवार के लिए मार्गदर्शन कि कैसे मदद करें, बिना अपने प्रियजन को दूर धकेले।",
         ],
+        story: {
+          quote: "मेरे पति ने कई बार अकेले छोड़ने की कोशिश की। यहाँ किसी ने उन्हें शर्मिंदा नहीं किया। आज उसे 8 महीने हो गए — और हमारा घर फिर से घर जैसा लगता है।",
+          who: "एक परिवारजन, जयपुर",
+        },
       },
       "child-adolescent": {
         title: "बाल और किशोर मनोचिकित्सा",
@@ -219,6 +255,10 @@ export const SERVICE_DETAILS = {
           "अभिभावकों को साथी की तरह मार्गदर्शन — घर पर सहारा देने के व्यावहारिक तरीके।",
           "स्कूल के साथ समन्वय केवल तभी जब आप चाहें, हमेशा आपकी सहमति से।",
         ],
+        story: {
+          quote: "मेरा बेटा महीनों से चुप था, और मैं बहुत डरी हुई थी। सौम्य सत्रों से वह धीरे-धीरे खुलने लगा — और मैंने सीखा कि उसके लिए बस मौजूद कैसे रहूँ।",
+          who: "एक अभिभावक, जयपुर",
+        },
       },
       "sexual-health": {
         title: "यौन स्वास्थ्य परामर्श",
@@ -239,6 +279,10 @@ export const SERVICE_DETAILS = {
           "चिंता के शारीरिक और भावनात्मक, दोनों पहलुओं की देखभाल।",
           "दंपति केवल तभी शामिल जब और जैसे आप चाहें।",
         ],
+        story: {
+          quote: "मैंने यह चिंता वर्षों चुपचाप ढोई, किसी से पूछने में बहुत शर्म आती थी। एक निजी, सम्मानजनक बातचीत ने मुझे तथ्य दिए — और मेरा आत्मविश्वास लौटा दिया।",
+          who: "मरीज़, जयपुर",
+        },
       },
       "couples-family": {
         title: "दंपत्ति और पारिवारिक परामर्श",
@@ -259,6 +303,10 @@ export const SERVICE_DETAILS = {
           "संस्कृति के अनुरूप मार्गदर्शन जो आपके परिवार की संरचना का सम्मान करता है।",
           "सत्र उस गति से जिसमें आपका परिवार सहज हो।",
         ],
+        story: {
+          quote: "हम बस एक झगड़े की दूरी पर थे हार मान लेने से। उस कमरे में साथ बैठकर, आख़िरकार हमने एक-दूसरे को सुना। अब हम फिर से बात करते हैं।",
+          who: "एक दंपत्ति, जयपुर",
+        },
       },
       "online-consultation": {
         title: "ऑनलाइन कंसल्टेशन",
@@ -279,6 +327,10 @@ export const SERVICE_DETAILS = {
           "कॉल या WhatsApp पर आसान बुकिंग — कोई जटिल सेटअप नहीं।",
           "डॉ. सोनी इन-पर्सन मुलाक़ात केवल तभी सुझाएँगे जब सचमुच ज़रूरत हो।",
         ],
+        story: {
+          quote: "मैं जयपुर से दूर रहता हूँ और लगभग संपर्क ही नहीं किया। वीडियो कंसल्टेशन उतना ही व्यक्तिगत लगा — जैसे सामने बैठे हों। इसने मेरे लिए सब कुछ बदल दिया।",
+          who: "मरीज़, जयपुर के बाहर",
+        },
       },
     },
   },

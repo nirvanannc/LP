@@ -11,6 +11,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
+  Quotes,
   ShieldCheck,
   Phone,
   WhatsappLogo,
@@ -142,6 +143,33 @@ export const ServiceDetail = () => {
               <p className="text-[14px] text-ink/80 leading-relaxed">{ui.reassure}</p>
             </div>
           </FadeUp>
+
+          {/* story of hope */}
+          {svc.story && (
+            <FadeUp delay={0.05}>
+              <figure
+                className="mt-12 relative overflow-hidden rounded-[2rem] bg-teal text-sand p-8 sm:p-10"
+                data-testid="service-story"
+              >
+                <img
+                  src={IMAGES.jali}
+                  alt=""
+                  aria-hidden
+                  className="pointer-events-none absolute -right-16 -bottom-16 w-64 opacity-[0.06] invert"
+                />
+                <div className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-terracotta/20 blur-3xl" />
+                <div className="relative">
+                  <p className="text-[12px] uppercase tracking-[0.24em] text-terracotta">{ui.storyTitle}</p>
+                  <Quotes size={32} weight="fill" className="text-sand/35 mt-4" />
+                  <blockquote className="mt-3 font-serif italic text-2xl sm:text-3xl leading-snug text-sand/95 max-w-2xl">
+                    {svc.story.quote}
+                  </blockquote>
+                  <figcaption className="mt-5 text-sand/70 text-sm">— {svc.story.who}</figcaption>
+                  <p className="mt-4 text-[12px] text-sand/45">{ui.storyNote}</p>
+                </div>
+              </figure>
+            </FadeUp>
+          )}
 
           {/* CTA */}
           <FadeUp delay={0.05}>
