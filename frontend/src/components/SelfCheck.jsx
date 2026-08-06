@@ -37,6 +37,7 @@ export const SelfCheck = () => {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [dir, setDir] = useState(1);
+  const [locked, setLocked] = useState(false);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -47,7 +48,7 @@ export const SelfCheck = () => {
   const questions = track ? sc.questions[track] : [];
   const maxScore = questions.length * 3;
 
-  const score = useMemo(() => answers.reduce((s, a) => s + a.value, 0), [answers]);
+  const score = useMemo(() => answers.reduce((s, a) => s + (a?.value || 0), 0), [answers]);
 
   const band = useMemo(() => {
     if (maxScore === 0) return "low";
@@ -70,15 +71,23 @@ export const SelfCheck = () => {
   };
 
   const answer = (opt) => {
+    if (locked) return;
+    setLocked(true);
     const q = questions[current];
     const next = [...answers];
     next[current] = { question: q, answer: sc.scaleLabels[opt], value: opt };
     setAnswers(next);
     setDir(1);
     if (current < questions.length - 1) {
-      setTimeout(() => setCurrent((c) => c + 1), 180);
+      setTimeout(() => {
+        setCurrent((c) => c + 1);
+        setLocked(false);
+      }, 220);
     } else {
-      setTimeout(() => setStage("result"), 220);
+      setTimeout(() => {
+        setStage("result");
+        setLocked(false);
+      }, 260);
     }
   };
 
@@ -93,6 +102,7 @@ export const SelfCheck = () => {
     setTrack(null);
     setCurrent(0);
     setAnswers([]);
+    setLocked(false);
     setName("");
     setPhone("");
     setSubmitted(false);
