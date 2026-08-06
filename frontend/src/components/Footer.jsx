@@ -28,7 +28,7 @@ export const Footer = () => {
             <p className="mt-4 text-sand/70 max-w-sm leading-relaxed">{f.tagline}</p>
             <div className="mt-6 flex gap-3">
               <a href={telLink} className="grid place-items-center h-10 w-10 rounded-full bg-sand/10 hover:bg-sand/20 transition-colors" data-testid="footer-call" aria-label="Call"><Phone size={18} weight="fill" /></a>
-              <a href={waLink()} target="_blank" rel="noreferrer" className="grid place-items-center h-10 w-10 rounded-full bg-sand/10 hover:bg-sand/20 transition-colors" data-testid="footer-whatsapp" aria-label="WhatsApp"><WhatsappLogo size={18} weight="fill" /></a>
+              <a href={waLink(t.wa.general)} target="_blank" rel="noreferrer" className="grid place-items-center h-10 w-10 rounded-full bg-sand/10 hover:bg-sand/20 transition-colors" data-testid="footer-whatsapp" aria-label="WhatsApp"><WhatsappLogo size={18} weight="fill" /></a>
             </div>
           </div>
 

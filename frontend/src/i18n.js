@@ -27,6 +27,11 @@ export const CONTENT = {
       book: "Book Consultation",
       privacy: "100% confidential",
     },
+    wa: {
+      general: "Namaste 🙏 I'd like to speak with Dr. Soni's clinic, privately. Could you please guide me?",
+      selfcheck: "Namaste 🙏 I just finished the self-check on your website and I'd like to talk to Dr. Soni about my results, privately.",
+      booking: "Namaste 🙏 I'd like to book a confidential consultation with Dr. Soni. Please let me know the next available time.",
+    },
     header: {
       tagline: "Mental Health & De-Addiction Care, Jaipur",
     },
@@ -274,6 +279,11 @@ export const CONTENT = {
       whatsappShort: "WhatsApp",
       book: "कंसल्टेशन बुक करें",
       privacy: "100% गोपनीय",
+    },
+    wa: {
+      general: "नमस्ते 🙏 मुझे कुछ ठीक नहीं लग रहा और मैं Dr. सोनी की क्लिनिक से निजी तौर पर बात करना चाहता/चाहती हूँ। क्या आप मेरी मदद करेंगे?",
+      selfcheck: "नमस्ते 🙏 मैंने अभी आपकी वेबसाइट पर सेल्फ़-चेक पूरा किया है और अपने नतीजों के बारे में Dr. सोनी से निजी तौर पर बात करना चाहता/चाहती हूँ।",
+      booking: "नमस्ते 🙏 मैं Dr. सोनी के साथ एक गोपनीय कंसल्टेशन बुक करना चाहता/चाहती हूँ। कृपया अगला उपलब्ध समय बताएँ।",
     },
     header: {
       tagline: "मानसिक स्वास्थ्य और नशा-मुक्ति देखभाल, जयपुर",

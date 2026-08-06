@@ -94,7 +94,7 @@ export const Hero = () => {
               />
             </button>
             <a
-              href={waLink()}
+              href={waLink(t.wa.general)}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-teal/25 bg-surface text-teal px-7 py-4 text-base font-medium hover:border-teal transition-colors duration-300"

@@ -94,7 +94,7 @@ export const Header = () => {
             <Phone size={18} weight="fill" />
           </a>
           <a
-            href={waLink()}
+            href={waLink(t.wa.general)}
             target="_blank"
             rel="noreferrer"
             className="hidden sm:grid place-items-center h-10 w-10 rounded-full bg-terracotta text-white hover:brightness-95 transition-[filter] duration-300"

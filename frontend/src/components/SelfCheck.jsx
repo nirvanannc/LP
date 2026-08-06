@@ -417,7 +417,7 @@ export const SelfCheck = () => {
                             <a href={telLink} className="flex items-center justify-center gap-1.5 rounded-full border border-line py-2.5 text-[13px] text-teal hover:bg-wheat/50 transition-colors" data-testid="result-call">
                               <Phone size={16} weight="fill" /> {t.common.callShort}
                             </a>
-                            <a href={waLink()} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-1.5 rounded-full border border-line py-2.5 text-[13px] text-teal hover:bg-wheat/50 transition-colors" data-testid="result-whatsapp">
+                            <a href={waLink(t.wa.selfcheck)} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-1.5 rounded-full border border-line py-2.5 text-[13px] text-teal hover:bg-wheat/50 transition-colors" data-testid="result-whatsapp">
                               <WhatsappLogo size={16} weight="fill" /> {t.common.whatsappShort}
                             </a>
                             <button onClick={() => scrollTo("contact")} className="flex items-center justify-center gap-1.5 rounded-full border border-line py-2.5 text-[13px] text-teal hover:bg-wheat/50 transition-colors" data-testid="result-book">
@@ -439,7 +439,7 @@ export const SelfCheck = () => {
                           <a href={telLink} className="inline-flex items-center gap-1.5 rounded-full bg-teal text-sand px-5 py-3 text-sm">
                             <Phone size={16} weight="fill" /> {t.common.call}
                           </a>
-                          <a href={waLink()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-terracotta text-white px-5 py-3 text-sm">
+                          <a href={waLink(t.wa.selfcheck)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-terracotta text-white px-5 py-3 text-sm">
                             <WhatsappLogo size={16} weight="fill" /> {t.common.whatsapp}
                           </a>
                         </div>

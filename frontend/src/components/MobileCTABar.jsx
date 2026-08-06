@@ -23,7 +23,7 @@ export const MobileCTABar = () => {
         <Phone size={17} weight="fill" /> {t.common.callShort}
       </a>
       <a
-        href={waLink()}
+        href={waLink(t.wa.general)}
         target="_blank"
         rel="noreferrer"
         className="flex-1 flex items-center justify-center gap-2 rounded-full bg-terracotta text-white py-3 text-sm font-medium"

@@ -73,7 +73,7 @@ export const FinalCTA = () => {
             <a href={telLink} className="flex items-center justify-center gap-2 rounded-full bg-teal text-sand py-4 font-medium hover:bg-teal-deep transition-colors" data-testid="final-call">
               <Phone size={18} weight="fill" /> {t.common.call}
             </a>
-            <a href={waLink()} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-full bg-terracotta text-white py-4 font-medium hover:brightness-95 transition-[filter]" data-testid="final-whatsapp">
+            <a href={waLink(t.wa.booking)} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-full bg-terracotta text-white py-4 font-medium hover:brightness-95 transition-[filter]" data-testid="final-whatsapp">
               <WhatsappLogo size={19} weight="fill" /> {t.common.whatsapp}
             </a>
             <a href="#book-form" className="flex items-center justify-center gap-2 rounded-full border border-teal text-teal py-4 font-medium hover:bg-wheat/50 transition-colors" data-testid="final-book-scroll">
