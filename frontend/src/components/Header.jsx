@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, WhatsappLogo, List, X, Translate } from "@phosphor-icons/react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLang } from "@/context/LanguageContext";
 import { SITE, waLink, telLink } from "@/lib/site";
 
-const scrollTo = (id) => {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-};
-
 export const Header = () => {
   const { t, lang, toggle } = useLang();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const scrollTo = (id) => {
+    if (location.pathname !== "/") {
+      navigate(id === "top" ? "/" : `/#${id}`);
+      return;
+    }
+    if (id === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const solid = scrolled || location.pathname !== "/";
 
   const nav = [
     { id: "top", label: t.nav.home },
@@ -34,7 +46,7 @@ export const Header = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-[background-color,box-shadow,padding] duration-500 ${
-        scrolled
+        solid
           ? "bg-sand/80 backdrop-blur-xl border-b border-line py-2.5 shadow-[0_8px_30px_rgba(18,67,64,0.06)]"
           : "bg-transparent py-4"
       }`}

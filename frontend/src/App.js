@@ -1,20 +1,13 @@
 import { useEffect } from "react";
 import "@/App.css";
 import Lenis from "lenis";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Header } from "@/components/Header";
 import { MobileCTABar } from "@/components/MobileCTABar";
-import { Hero } from "@/components/Hero";
-import { Ribbon } from "@/components/Ribbon";
-import { Recognition } from "@/components/Recognition";
-import { SelfCheck } from "@/components/SelfCheck";
-import { About } from "@/components/About";
-import { Services } from "@/components/Services";
-import { WhatToExpect } from "@/components/WhatToExpect";
-import { Testimonials } from "@/components/Testimonials";
-import { FAQ } from "@/components/FAQ";
-import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
+import { LandingPage } from "@/components/LandingPage";
+import { ServiceDetail } from "@/components/ServiceDetail";
 
 function App() {
   useEffect(() => {
@@ -35,23 +28,19 @@ function App() {
 
   return (
     <LanguageProvider>
-      <div className="bg-sand text-ink min-h-screen antialiased">
-        <Header />
-        <main>
-          <Hero />
-          <Ribbon />
-          <Recognition />
-          <SelfCheck />
-          <About />
-          <Services />
-          <WhatToExpect />
-          <Testimonials />
-          <FAQ />
-          <FinalCTA />
-        </main>
-        <Footer />
-        <MobileCTABar />
-      </div>
+      <BrowserRouter>
+        <div className="bg-sand text-ink min-h-screen antialiased">
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/services/:slug" element={<ServiceDetail />} />
+            </Routes>
+          </main>
+          <Footer />
+          <MobileCTABar />
+        </div>
+      </BrowserRouter>
     </LanguageProvider>
   );
 }

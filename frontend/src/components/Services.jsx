@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   CloudRain,
   Wine,
@@ -11,6 +12,7 @@ import {
 } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
 import { Chapter, FadeUp } from "@/components/Primitives";
+import { SERVICE_SLUGS } from "@/data/serviceDetails";
 
 const icons = [CloudRain, Wine, Baby, HeartHalf, UsersThree, VideoCamera];
 // bento spans (12-col): make first & last wider
@@ -25,6 +27,7 @@ const spans = [
 
 export const Services = () => {
   const { t } = useLang();
+  const navigate = useNavigate();
   const s = t.services;
   return (
     <section id="services" className="py-24 lg:py-32" data-testid="services-section">
@@ -57,7 +60,7 @@ export const Services = () => {
                     <p className="mt-2 text-[15px] text-muted leading-relaxed max-w-md">{item.d}</p>
                   </div>
                   <button
-                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                    onClick={() => navigate(`/services/${SERVICE_SLUGS[i]}`)}
                     className="relative mt-6 inline-flex items-center gap-1.5 text-sm text-teal font-medium w-fit"
                     data-testid={`service-learn-${i}`}
                   >

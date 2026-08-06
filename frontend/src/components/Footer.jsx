@@ -1,13 +1,26 @@
 import React from "react";
 import { InstagramLogo, FacebookLogo, LinkedinLogo, Phone, WhatsappLogo } from "@phosphor-icons/react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLang } from "@/context/LanguageContext";
 import { SITE, waLink, telLink } from "@/lib/site";
 
-const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-
 export const Footer = () => {
   const { t } = useLang();
+  const navigate = useNavigate();
+  const location = useLocation();
   const f = t.footer;
+
+  const scrollTo = (id) => {
+    if (location.pathname !== "/") {
+      navigate(id === "top" ? "/" : `/#${id}`);
+      return;
+    }
+    if (id === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
   const links = [
     { id: "top", label: t.nav.home },
     { id: "about", label: t.nav.about },
