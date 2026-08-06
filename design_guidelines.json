@@ -1,0 +1,102 @@
+{
+  "theme": "light",
+  "archetype": "ORGANIC & EARTHY",
+  "typography": {
+    "heading_font": "Cormorant Garamond",
+    "body_font": "Outfit",
+    "strategy": "The 'Old Money Tech' variant. Use Cormorant Garamond for deep empathy and authority in main headings (H1, H2, blockquotes). Use Outfit for clean, highly legible UI elements, forms, and body copy.",
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl font-light tracking-tight leading-none text-primary-dark",
+      "h2": "text-4xl sm:text-5xl font-normal tracking-tight text-primary-dark",
+      "h3": "text-2xl sm:text-3xl font-medium",
+      "body": "text-lg leading-relaxed text-neutral-800",
+      "small": "text-sm tracking-wide uppercase font-medium",
+      "ui": "font-sans (Outfit) for buttons, inputs, tags"
+    }
+  },
+  "colors": {
+    "background": "#F5F3EC", 
+    "surface": "#FCFAF8", 
+    "primary": "#124340", 
+    "secondary": "#C87560", 
+    "accent": "#E8DCC8", 
+    "text": {
+      "main": "#0A2523",
+      "muted": "#4A6161",
+      "inverse": "#F5F3EC"
+    },
+    "borders": "#E2DCD0"
+  },
+  "visual_enhancers": {
+    "border_radius": "rounded-3xl for major cards, rounded-full for buttons and pills",
+    "shadows": "shadow-[0_8px_30px_rgba(18,67,64,0.06)] for elevated cards. No harsh drop shadows.",
+    "textures": "Use CSS radial gradients for soft lighting effects in the background. Use the provided sand texture image with low opacity (5-10%) and mix-blend-multiply as a subtle background motif simulating Indian Jali patterns.",
+    "surfaces": "Use 'Crystal Glass' for the sticky header: backdrop-blur-xl bg-[#F5F3EC]/70 with a subtle border-b border-[#E2DCD0]."
+  },
+  "grids_and_layouts": {
+    "spacing_system": "Generous spacing. Use py-24 or py-32 for section padding. gap-8 to gap-12 in grids.",
+    "hero": "Asymmetric layout. Text heavy on the left, organic overlapping imagery on the right.",
+    "services": "Bento Grid Mode A (Tetris Grid). grid-cols-1 md:grid-cols-12 gap-6. Mix square and wide cards.",
+    "scenario_cards": "Horizontal flex container with overflow-x-auto, hide scrollbar. Cards should be snap-align-center."
+  },
+  "motion": {
+    "hero_reveal": "MANDATORY: Framer Motion masked line-by-line text reveal for the H1 on load. Smooth, slow (duration 0.8s, ease: [0.33, 1, 0.68, 1]).",
+    "scroll": "Lenis smooth scroll for momentum. Standard browser scrolling is forbidden.",
+    "cards": "Framer motion fade-up with y: 40 and opacity: 0 on scroll trigger.",
+    "questionnaire": "AnimatePresence from Framer Motion. Slide in from right (x: 50, opacity: 0), slide out to left (x: -50, opacity: 0) for each question step, simulating a gentle conversational flow.",
+    "marquee": "Use react-fast-marquee for a slow, organic 'Editorial Ribbon' of trust keywords or Hindi empathy phrases between sections."
+  },
+  "accessibility": {
+    "contrast": "Ensure white text on primary teal button meets 4.5:1 ratio. Text colors must be high contrast.",
+    "reduced_motion": "Respect prefers-reduced-motion media query for Framer Motion.",
+    "testing": "All interactive elements (buttons, inputs, form steps, language toggle) MUST have data-testid attributes (e.g., data-testid='hero-cta-button')."
+  },
+  "media": {
+    "iconography": "@phosphor-icons/react (Duotone or Light weight for a premium, non-SaaS look)",
+    "image_strategy": "Images must feel like a premium editorial, not generic medical stock. Use clipped frames or rounded corners."
+  },
+  "3d_libraries": {
+    "usage": "Use Framer Motion 3D or subtle parallax via framer-motion/useScroll for the hero image and background textures. Keep it gentle and grounding, not disorienting."
+  },
+  "image_urls": {
+    "dr_portrait": {
+      "url": "https://images.unsplash.com/photo-1758874574397-e56dfcfc116d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBtYWxlJTIwZG9jdG9yJTIwd2FybSUyMHNtaWxlJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzg1OTk3NzM0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Warm, smiling Indian male doctor portrait. Use in the About/Credibility section and as a small circular avatar in the Hero trust strip."
+    },
+    "texture_bg": {
+      "url": "https://images.unsplash.com/photo-1774699495822-446a243cbe76?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwzfHxjYWxtJTIwbmF0dXJlJTIwYWJzdHJhY3QlMjBzYW5kJTIwdGV4dHVyZXxlbnwwfHx8fDE3ODU5OTc3MzR8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Rippled sand dunes. Use as an absolute positioned background layer with low opacity and mix-blend-multiply in the Hero and Self-Check sections."
+    },
+    "clinic_interior": {
+      "url": "https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwxfHx3YXJtJTIwY2xpbmljJTIwaW50ZXJpb3IlMjB3YWl0aW5nJTIwcm9vbXxlbnwwfHx8fDE3ODU5OTc3MzR8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Warm waiting room interior. Use in the 'What to Expect' section."
+    }
+  },
+  "component_path": "/app/frontend/src/components/",
+  "instructions_to_main_agent": [
+    "Install required dependencies: framer-motion, @studio-freight/lenis, @phosphor-icons/react, react-fast-marquee.",
+    "Set up Tailwind config with the specified custom colors (primary: #124340, secondary: #C87560, background: #F5F3EC) and fonts.",
+    "Implement the Language Toggle state at the top level, allowing switching between English and Hindi text in the UI.",
+    "The Hero Section MUST feature a Framer Motion text reveal for the headline. Ensure the image has a soft overlay if text overlaps.",
+    "Build the 'Self-Check Questionnaire' as a multi-step component. Use Shadcn components for the radio/options, but strip the default Vercel-look. Ensure it has a progress bar. At the end, show a result and a lead capture form.",
+    "Create the Services section using a Bento Grid layout (CSS Grid).",
+    "Add a sticky mobile bottom bar with Call and WhatsApp buttons that only appears on mobile screens.",
+    "Ensure all cards use the background surface color (#FCFAF8) and border radius (rounded-3xl) to stand out against the main background (#F5F3EC).",
+    "Do NOT use pure white or pure black anywhere. Use the designated text and background colors."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) for sticky navs.",
+    "You MUST NOT apply universal transition (e.g., transition: all). Always add transitions for specific interactive elements like button, input excluding transforms.",
+    "You MUST NOT center align the app container, i.e., do not add .App { text-align: center; } in the css file.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style.",
+    "NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons. Use the specified icon library.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Missing categories = main agent will use placeholder text which is FORBIDDEN. Use the exact image URLs provided.",
+    "All interactive and key informational elements MUST include a data-testid attribute to facilitate robust automated testing."
+  ]
+}
