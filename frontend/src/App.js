@@ -1,55 +1,58 @@
 import { useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
+import Lenis from "lenis";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { Header } from "@/components/Header";
+import { MobileCTABar } from "@/components/MobileCTABar";
+import { Hero } from "@/components/Hero";
+import { Ribbon } from "@/components/Ribbon";
+import { Recognition } from "@/components/Recognition";
+import { SelfCheck } from "@/components/SelfCheck";
+import { About } from "@/components/About";
+import { Services } from "@/components/Services";
+import { WhatToExpect } from "@/components/WhatToExpect";
+import { Testimonials } from "@/components/Testimonials";
+import { FAQ } from "@/components/FAQ";
+import { FinalCTA } from "@/components/FinalCTA";
+import { Footer } from "@/components/Footer";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
+function App() {
   useEffect(() => {
-    helloWorldApi();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    let raf;
+    const loop = (time) => {
+      lenis.raf(time);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(raf);
+      lenis.destroy();
+    };
   }, []);
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
-
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <LanguageProvider>
+      <div className="bg-sand text-ink min-h-screen antialiased">
+        <Header />
+        <main>
+          <Hero />
+          <Ribbon />
+          <Recognition />
+          <SelfCheck />
+          <About />
+          <Services />
+          <WhatToExpect />
+          <Testimonials />
+          <FAQ />
+          <FinalCTA />
+        </main>
+        <Footer />
+        <MobileCTABar />
+      </div>
+    </LanguageProvider>
   );
 }
 
