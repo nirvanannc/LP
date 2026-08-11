@@ -10,6 +10,7 @@ import { WhatToExpect } from "@/components/WhatToExpect";
 import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
+import { Insights } from "@/components/Insights";
 
 export const LandingPage = () => {
   const location = useLocation();
@@ -29,14 +30,15 @@ export const LandingPage = () => {
     <>
       <Hero />
       <Ribbon />
-      <Recognition />
       <SelfCheck />
+      <Recognition />
       <About />
       <Services />
       <WhatToExpect />
       <Testimonials />
       <FAQ />
       <FinalCTA />
+      <Insights />
     </>
   );
 };

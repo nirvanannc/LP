@@ -25,6 +25,7 @@ export const CONTENT = {
       whatsapp: "WhatsApp Us",
       whatsappShort: "WhatsApp",
       book: "Book Consultation",
+      bookOnline: "Book Online",
       privacy: "100% confidential",
     },
     wa: {
@@ -59,7 +60,7 @@ export const CONTENT = {
       "Confidential care in Jaipur",
     ],
     recognition: {
-      chapter: "01",
+      chapter: "02",
       title: "Does any of this sound like you?",
       sub: "Read slowly. If even one feels familiar, you are exactly where you should be.",
       cards: [
@@ -73,12 +74,21 @@ export const CONTENT = {
       validation: "This is more common than you think — and it is treatable.",
     },
     selfcheck: {
-      chapter: "02",
+      chapter: "01",
       title: "A gentle 2-minute self-check",
       sub: "No right answers. Nothing to fail. Just a few questions to understand how you've been feeling.",
       disclaimer:
         "This is a supportive screening tool, not a diagnosis. Only a professional consultation can confirm anything.",
       start: "Start the self-check",
+      startCTA: "Start Self-Check",
+      introTitle: "Take a private moment for yourself",
+      introBody: "This is a calm, private reflection tool — not a test, and not a diagnosis. In about two minutes, a few gentle questions can help you understand how you've really been feeling lately.",
+      whatYouGetTitle: "What you'll get at the end",
+      whatYouGet: [
+        "A simple summary of how you've been feeling",
+        "Gentle, practical next steps — at your own pace",
+        "Easy ways to reach us, only if you'd like to",
+      ],
       chooseTrack: "What's on your mind right now?",
       chooseTrackSub: "Pick the one closest to you — you can always talk about the rest later.",
       tracks: [
@@ -127,17 +137,35 @@ export const CONTENT = {
           band: "Low signal",
           headline: "You seem to be coping — but reaching out was still brave.",
           body: "Your responses suggest mild signs of stress. A short conversation, plus some simple self-care, can help you stay steady. There's no rush — but the door is open.",
+          nextSteps: [
+            "Keep a simple daily routine for sleep and rest",
+            "Talk to someone you trust about how you feel",
+            "Book a relaxed consultation whenever you feel ready",
+          ],
         },
         moderate: {
           band: "Moderate signal",
           headline: "What you're feeling deserves a proper conversation.",
           body: "Your responses suggest moderate signs that a professional conversation could really help with. We gently recommend an in-person or video consultation with Dr. Soni in the next few days.",
+          nextSteps: [
+            "Consider a consultation with Dr. Soni in the next few days",
+            "Note down what's felt hardest, to share when you talk",
+            "Choose in-person or a private online session — whatever feels easier",
+          ],
         },
         high: {
           band: "Please don't wait",
           headline: "You've been carrying a lot. Let's talk today.",
           body: "Your responses suggest you could use support soon. Please call the clinic now, or reach the free national helpline any time — day or night. You do not have to handle this alone.",
+          nextSteps: [
+            "Reach out today — a conversation can help right away",
+            "Keep the helpline number handy, day or night",
+            "You don't have to explain everything; we'll guide you gently",
+          ],
         },
+        summaryTitle: "Your gentle summary",
+        nextStepsTitle: "Your gentle next steps",
+        optionsTitle: "Reach us the way that feels easiest",
         notDiagnosis: "This is not a diagnosis — only a professional consultation with Dr. Soni can confirm what's going on.",
         helplineLabel: "24×7 free helpline",
         formTitle: "Where should Dr. Soni's team reach you?",
@@ -223,6 +251,16 @@ export const CONTENT = {
         { q: "What if I just want to talk about a family member, not myself?", a: "That's completely fine and very common. Many families reach out first for a parent, spouse or child. Dr. Soni will guide you on the kindest way forward." },
       ],
     },
+    insights: {
+      chapter: "09",
+      tag: "Insights",
+      title: "Insights from Dr. Soni",
+      sub: "Gentle notes on the mind, family and healing — read them right here, no need to leave the page.",
+      tapHint: "Tap a card to read the full note",
+      readMore: "Read insight",
+      swipeHint: "Swipe, or use the arrows",
+      close: "Close",
+    },
     finalCTA: {
       chapter: "08",
       title: "The first step is just a conversation.",
@@ -278,6 +316,7 @@ export const CONTENT = {
       whatsapp: "WhatsApp करें",
       whatsappShort: "WhatsApp",
       book: "कंसल्टेशन बुक करें",
+      bookOnline: "ऑनलाइन बुक करें",
       privacy: "100% गोपनीय",
     },
     wa: {
@@ -312,7 +351,7 @@ export const CONTENT = {
       "जयपुर में गोपनीय देखभाल",
     ],
     recognition: {
-      chapter: "01",
+      chapter: "02",
       title: "क्या इनमें से कुछ आपको अपनी बात लगती है?",
       sub: "धीरे से पढ़िए। अगर एक भी अपनी-सी लगे, तो आप बिल्कुल सही जगह पर हैं।",
       cards: [
@@ -326,12 +365,21 @@ export const CONTENT = {
       validation: "यह आपकी सोच से कहीं ज़्यादा आम है — और इसका इलाज संभव है।",
     },
     selfcheck: {
-      chapter: "02",
+      chapter: "01",
       title: "एक सौम्य 2-मिनट का सेल्फ़-चेक",
       sub: "कोई सही जवाब नहीं। कुछ भी फ़ेल होने वाला नहीं। बस कुछ सवाल — यह समझने के लिए कि आप कैसा महसूस कर रहे हैं।",
       disclaimer:
         "यह एक सहायक स्क्रीनिंग टूल है, कोई निदान नहीं। केवल एक प्रोफेशनल कंसल्टेशन ही कुछ पुष्टि कर सकता है।",
       start: "सेल्फ़-चेक शुरू करें",
+      startCTA: "सेल्फ़-चेक शुरू करें",
+      introTitle: "अपने लिए कुछ पल निकालिए",
+      introBody: "यह एक शांत, निजी आत्म-चिंतन का साधन है — कोई परीक्षा नहीं, और कोई निदान नहीं। लगभग दो मिनट में, कुछ सौम्य सवाल आपको यह समझने में मदद कर सकते हैं कि हाल में आप असल में कैसा महसूस कर रहे हैं।",
+      whatYouGetTitle: "अंत में आपको क्या मिलेगा",
+      whatYouGet: [
+        "आप कैसा महसूस कर रहे हैं, उसका एक सरल सारांश",
+        "सौम्य, व्यावहारिक अगले कदम — अपनी गति से",
+        "हम तक पहुँचने के आसान तरीके, सिर्फ़ तभी जब आप चाहें",
+      ],
       chooseTrack: "अभी आपके मन में क्या है?",
       chooseTrackSub: "जो आपके सबसे करीब हो उसे चुनें — बाकी बातें आप बाद में भी कर सकते हैं।",
       tracks: [
@@ -380,17 +428,35 @@ export const CONTENT = {
           band: "हल्का संकेत",
           headline: "आप संभाल पा रहे हैं — फिर भी आगे बढ़ना हिम्मत की बात है।",
           body: "आपके जवाब हल्के तनाव के संकेत देते हैं। एक छोटी-सी बातचीत और कुछ आसान सेल्फ़-केयर आपको स्थिर रहने में मदद कर सकती है। कोई जल्दी नहीं — पर दरवाज़ा खुला है।",
+          nextSteps: [
+            "नींद और आराम के लिए एक सरल दिनचर्या बनाए रखें",
+            "जिस पर भरोसा हो उससे अपनी भावनाओं के बारे में बात करें",
+            "जब भी तैयार महसूस करें, एक आरामदायक कंसल्टेशन बुक करें",
+          ],
         },
         moderate: {
           band: "मध्यम संकेत",
           headline: "आप जो महसूस कर रहे हैं, वह एक सही बातचीत का हक़दार है।",
           body: "आपके जवाब मध्यम संकेत देते हैं जिनमें एक प्रोफेशनल बातचीत सचमुच मदद कर सकती है। हम सुझाव देते हैं कि अगले कुछ दिनों में डॉ. सोनी से इन-पर्सन या वीडियो कंसल्टेशन लें।",
+          nextSteps: [
+            "अगले कुछ दिनों में डॉ. सोनी से कंसल्टेशन पर विचार करें",
+            "जो सबसे मुश्किल रहा है उसे नोट कर लें, बातचीत में साझा करने के लिए",
+            "इन-पर्सन या निजी ऑनलाइन सेशन चुनें — जो आसान लगे",
+          ],
         },
         high: {
           band: "कृपया इंतज़ार न करें",
           headline: "आपने बहुत कुछ अकेले संभाला है। आइए आज ही बात करें।",
           body: "आपके जवाब बताते हैं कि आपको जल्द सहारे की ज़रूरत हो सकती है। कृपया अभी क्लिनिक कॉल करें, या किसी भी समय — दिन हो या रात — मुफ़्त राष्ट्रीय हेल्पलाइन पर संपर्क करें। आपको यह अकेले नहीं झेलना है।",
+          nextSteps: [
+            "आज ही संपर्क करें — एक बातचीत तुरंत मदद कर सकती है",
+            "हेल्पलाइन नंबर पास रखें, दिन हो या रात",
+            "आपको सब कुछ समझाने की ज़रूरत नहीं; हम आपको धीरे से राह दिखाएँगे",
+          ],
         },
+        summaryTitle: "आपका सौम्य सारांश",
+        nextStepsTitle: "आपके सौम्य अगले कदम",
+        optionsTitle: "जो तरीका सबसे आसान लगे, उससे हम तक पहुँचें",
         notDiagnosis: "यह कोई निदान नहीं है — केवल डॉ. सोनी के साथ एक प्रोफेशनल कंसल्टेशन ही पुष्टि कर सकता है।",
         helplineLabel: "24×7 मुफ़्त हेल्पलाइन",
         formTitle: "डॉ. सोनी की टीम आप तक कैसे पहुँचे?",
@@ -475,6 +541,16 @@ export const CONTENT = {
         { q: "क्या ऑनलाइन कंसल्टेशन इन-पर्सन जितना ही असरदार है?", a: "कई समस्याओं के लिए, हाँ। वीडियो कंसल्टेशन निजी और उतने ही गहन होते हैं। कुछ स्थितियों में डॉ. सोनी इन-पर्सन मुलाक़ात सुझा सकते हैं — वे ईमानदारी से मार्गदर्शन करेंगे।" },
         { q: "अगर मैं सिर्फ़ किसी परिवार के सदस्य के बारे में बात करना चाहूँ, ख़ुद के बारे में नहीं?", a: "यह बिल्कुल ठीक है और बहुत आम भी। कई परिवार पहले किसी माता-पिता, जीवनसाथी या बच्चे के लिए संपर्क करते हैं। डॉ. सोनी आपको सबसे सौम्य रास्ता बताएँगे।" },
       ],
+    },
+    insights: {
+      chapter: "09",
+      tag: "बातें",
+      title: "डॉ. सोनी की बातें",
+      sub: "मन, परिवार और उपचार पर सौम्य विचार — यहीं पढ़िए, पेज छोड़ने की ज़रूरत नहीं।",
+      tapHint: "पूरी बात पढ़ने के लिए कार्ड पर टैप करें",
+      readMore: "पूरा पढ़ें",
+      swipeHint: "स्वाइप करें, या तीरों का उपयोग करें",
+      close: "बंद करें",
     },
     finalCTA: {
       chapter: "08",

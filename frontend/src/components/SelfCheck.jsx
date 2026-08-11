@@ -14,13 +14,18 @@ import {
   CheckCircle,
   Warning,
   Sparkle,
+  ClipboardText,
+  Compass,
+  ChatCircleDots,
 } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
+import { CONTENT } from "@/i18n";
 import { Chapter, FadeUp } from "@/components/Primitives";
 import { SITE, waLink, telLink } from "@/lib/site";
 import { submitLead } from "@/lib/api";
 
 const trackIcons = { general: Brain, deaddiction: Wine, child: Baby };
+const getIcons = [ClipboardText, Compass, ChatCircleDots];
 
 const scrollTo = (id) => {
   const el = document.getElementById(id);
@@ -187,22 +192,59 @@ export const SelfCheck = () => {
                     className="flex-1 flex flex-col items-center justify-center text-center"
                     data-testid="selfcheck-intro"
                   >
-                    <span className="grid place-items-center h-16 w-16 rounded-full bg-teal/8 text-teal mb-6">
+                    <span className="grid place-items-center h-16 w-16 rounded-full bg-teal/8 text-teal mb-5">
                       <Sparkle size={30} weight="light" />
                     </span>
-                    <p className="font-serif text-2xl sm:text-3xl text-teal-deep max-w-lg leading-snug">
-                      {sc.sub}
+                    <h3 className="font-serif text-3xl sm:text-4xl text-teal-deep leading-tight max-w-lg">
+                      {sc.introTitle}
+                    </h3>
+                    <p className="mt-3 text-[15px] sm:text-base text-muted max-w-lg leading-relaxed">
+                      {sc.introBody}
                     </p>
+
+                    {/* what you'll get */}
+                    <div className="mt-8 w-full max-w-md">
+                      <p className="text-[12px] uppercase tracking-[0.2em] text-terracotta">
+                        {sc.whatYouGetTitle}
+                      </p>
+                      <div className="mt-4 grid gap-2.5 text-left">
+                        {sc.whatYouGet.map((item, i) => {
+                          const GetIcon = getIcons[i];
+                          return (
+                            <div
+                              key={i}
+                              className="flex items-center gap-3 rounded-2xl bg-sand/50 border border-line px-4 py-3"
+                              data-testid={`selfcheck-benefit-${i}`}
+                            >
+                              <span className="grid place-items-center h-9 w-9 rounded-full bg-teal/8 text-teal shrink-0">
+                                <GetIcon size={19} weight="light" />
+                              </span>
+                              <span className="text-[14px] text-ink/80 leading-snug">{item}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* disclaimer */}
                     <div className="mt-6 flex items-start gap-2 text-[13px] text-muted max-w-md bg-wheat/40 rounded-2xl px-4 py-3">
                       <ShieldCheck size={18} weight="fill" className="text-terracotta shrink-0 mt-0.5" />
                       <span>{sc.disclaimer}</span>
                     </div>
+
+                    {/* one prominent bilingual start button */}
                     <button
                       onClick={() => setStage("track")}
-                      className="mt-8 inline-flex items-center gap-2 rounded-full bg-teal text-sand px-8 py-4 font-medium hover:bg-teal-deep transition-colors duration-300"
+                      className="mt-8 inline-flex flex-col items-center rounded-full bg-teal text-sand px-10 py-4 hover:bg-teal-deep transition-colors duration-300 shadow-[0_10px_30px_rgba(18,67,64,0.18)]"
                       data-testid="selfcheck-start-btn"
                     >
-                      {sc.start} <ArrowRight size={18} weight="bold" />
+                      <span className="inline-flex items-center gap-2 font-medium text-base">
+                        {CONTENT[lang].selfcheck.startCTA}
+                        <ArrowRight size={18} weight="bold" />
+                      </span>
+                      <span className="text-[12px] text-sand/70 mt-0.5">
+                        {CONTENT[lang === "en" ? "hi" : "en"].selfcheck.startCTA}
+                      </span>
                     </button>
                   </motion.div>
                 )}
@@ -319,6 +361,9 @@ export const SelfCheck = () => {
                   >
                     {!submitted ? (
                       <>
+                        <p className="text-[12px] uppercase tracking-[0.22em] text-terracotta mb-3">
+                          {R.summaryTitle}
+                        </p>
                         <div
                           className={`rounded-2xl p-6 ${
                             band === "high"
@@ -372,6 +417,23 @@ export const SelfCheck = () => {
                           </a>
                         )}
 
+                        {/* gentle next steps */}
+                        <div className="mt-5" data-testid="result-next-steps">
+                          <p className="text-[12px] uppercase tracking-[0.18em] text-terracotta">
+                            {R.nextStepsTitle}
+                          </p>
+                          <ul className="mt-3 grid gap-2">
+                            {bandData.nextSteps.map((step, i) => (
+                              <li key={i} className="flex gap-2.5 text-[14px] text-ink/80 leading-snug">
+                                <span className="grid place-items-center h-5 w-5 rounded-full bg-teal/10 text-teal text-[11px] font-medium shrink-0 mt-0.5">
+                                  {i + 1}
+                                </span>
+                                <span>{step}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
                         {/* lead form */}
                         <div className="mt-6">
                           <h4 className="font-medium text-teal-deep text-lg">{R.formTitle}</h4>
@@ -413,16 +475,21 @@ export const SelfCheck = () => {
                             </button>
                           </form>
 
-                          <div className="mt-4 grid grid-cols-3 gap-2">
-                            <a href={telLink} className="flex items-center justify-center gap-1.5 rounded-full border border-line py-2.5 text-[13px] text-teal hover:bg-wheat/50 transition-colors" data-testid="result-call">
-                              <Phone size={16} weight="fill" /> {t.common.callShort}
-                            </a>
-                            <a href={waLink(t.wa.selfcheck)} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-1.5 rounded-full border border-line py-2.5 text-[13px] text-teal hover:bg-wheat/50 transition-colors" data-testid="result-whatsapp">
-                              <WhatsappLogo size={16} weight="fill" /> {t.common.whatsappShort}
-                            </a>
-                            <button onClick={() => scrollTo("contact")} className="flex items-center justify-center gap-1.5 rounded-full border border-line py-2.5 text-[13px] text-teal hover:bg-wheat/50 transition-colors" data-testid="result-book">
-                              <CalendarCheck size={16} weight="bold" /> {t.common.book}
-                            </button>
+                          <div className="mt-6 pt-5 border-t border-line">
+                            <p className="text-[12px] uppercase tracking-[0.18em] text-terracotta text-center">
+                              {R.optionsTitle}
+                            </p>
+                            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                              <a href={telLink} className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-call">
+                                <Phone size={18} weight="fill" className="text-terracotta" /> {t.common.call}
+                              </a>
+                              <a href={waLink(t.wa.selfcheck)} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-whatsapp">
+                                <WhatsappLogo size={18} weight="fill" className="text-terracotta" /> {t.common.whatsapp}
+                              </a>
+                              <button onClick={() => scrollTo("contact")} className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-book">
+                                <CalendarCheck size={18} weight="bold" className="text-terracotta" /> {t.common.bookOnline}
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </>

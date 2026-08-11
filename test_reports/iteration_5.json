@@ -1,0 +1,22 @@
+{
+  "summary": "Frontend-only testing of new 'Insights from Dr. Soni' section on landing page. All 8 requested behaviors verified: section presence & correct order (after final-cta, before footer), 6-card layered stack with dots/arrows/prev/next, dot jumping, click-to-open modal with full caption (line-clamp-2 preview vs full 333-char modal caption), modal prev/next/close, Escape-to-close, no instagram.com links, and Hindi translation of title/sub/card/modal. Regression checks for selfcheck-section, final-cta-section, and hero passed. NO issues found.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Minor: front card renders with `key={index}` inside AnimatePresence but also drags on the same node — click-vs-drag guard via movedRef works well; consider `dragMomentum={false}` for cleaner UX.",
+    "The Chapter component receives `title={t.nav.home}` for the Insights section; probably should be a distinct 'Insights' label rather than 'Home' — minor semantic nit.",
+    "Peek layers use fixed images from items[index+1] / items[index+2] which is fine; consider adding `loading=\"lazy\"` on Insight images to reduce initial payload."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested per request)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Insights section fully functional. Note: card preview p tag uses inner_text which returns full text even when CSS-clamped — use clientHeight vs scrollHeight or computed webkitLineClamp to verify truncation, not inner_text length."
+}

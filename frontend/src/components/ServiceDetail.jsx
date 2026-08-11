@@ -11,7 +11,6 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
-  Quotes,
   ShieldCheck,
   Phone,
   WhatsappLogo,
@@ -19,6 +18,7 @@ import {
 } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
 import { FadeUp } from "@/components/Primitives";
+import { SwipeStack } from "@/components/SwipeStack";
 import { SERVICE_DETAILS, SERVICE_SLUGS } from "@/data/serviceDetails";
 import { IMAGES, waLink, telLink } from "@/lib/site";
 
@@ -144,30 +144,21 @@ export const ServiceDetail = () => {
             </div>
           </FadeUp>
 
-          {/* story of hope */}
-          {svc.story && (
+          {/* stories of hope */}
+          {svc.stories?.length > 0 && (
             <FadeUp delay={0.05}>
-              <figure
-                className="mt-12 relative overflow-hidden rounded-[2rem] bg-teal text-sand p-8 sm:p-10"
-                data-testid="service-story"
-              >
-                <img
-                  src={IMAGES.jali}
-                  alt=""
-                  aria-hidden
-                  className="pointer-events-none absolute -right-16 -bottom-16 w-64 opacity-[0.06] invert"
-                />
-                <div className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-terracotta/20 blur-3xl" />
-                <div className="relative">
-                  <p className="text-[12px] uppercase tracking-[0.24em] text-terracotta">{ui.storyTitle}</p>
-                  <Quotes size={32} weight="fill" className="text-sand/35 mt-4" />
-                  <blockquote className="mt-3 font-serif italic text-2xl sm:text-3xl leading-snug text-sand/95 max-w-2xl">
-                    {svc.story.quote}
-                  </blockquote>
-                  <figcaption className="mt-5 text-sand/70 text-sm">— {svc.story.who}</figcaption>
-                  <p className="mt-4 text-[12px] text-sand/45">{ui.storyNote}</p>
+              <div className="mt-16 text-center" data-testid="service-stories">
+                <p className="text-[12px] uppercase tracking-[0.24em] text-terracotta">{ui.storyTitle}</p>
+                <div className="mt-8">
+                  <SwipeStack
+                    items={svc.stories.map((s) => ({ quote: s.quote, attribution: s.who }))}
+                    variant="dark"
+                    testId="story"
+                    heightClass="h-[400px] sm:h-[340px]"
+                  />
                 </div>
-              </figure>
+                <p className="mt-6 text-[12px] text-muted/80 italic">{ui.storyNote}</p>
+              </div>
             </FadeUp>
           )}
 

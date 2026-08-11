@@ -44,10 +44,20 @@ export const SERVICE_DETAILS = {
           "Practical, everyday tools for sleep, worry and low moods.",
           "Steady follow-up so you're never left to manage it alone.",
         ],
-        story: {
-          quote: "For two years I thought this heaviness was just 'me'. A few honest conversations and the right care, and slowly the mornings stopped feeling impossible. I laugh with my family again.",
-          who: "S., Jaipur",
-        },
+        stories: [
+          {
+            quote: "For two years I thought this heaviness was just 'me'. A few honest conversations and the right care, and slowly the mornings stopped feeling impossible. I laugh with my family again.",
+            who: "S., Jaipur",
+          },
+          {
+            quote: "I kept telling everyone 'I'm fine'. Here I didn't have to pretend. Bas kisi ne sunn liya, and it lifted a weight I'd carried for years.",
+            who: "M., Jaipur",
+          },
+          {
+            quote: "The panic used to control my whole day. Now I have simple tools that actually work — and I finally feel in charge of my own mind again.",
+            who: "Patient, Jaipur",
+          },
+        ],
       },
       "de-addiction": {
         title: "De-Addiction Treatment",
@@ -68,10 +78,20 @@ export const SERVICE_DETAILS = {
           "Relapse-prevention and counselling that respects your family and values.",
           "Family guidance on how to help without pushing your loved one away.",
         ],
-        story: {
-          quote: "My husband tried to quit so many times on his own. Here, no one shamed him. Aaj usse 8 mahine ho gaye — and our home feels like home again.",
-          who: "A family member, Jaipur",
-        },
+        stories: [
+          {
+            quote: "My husband tried to quit so many times on his own. Here, no one shamed him. Aaj usse 8 mahine ho gaye — and our home feels like home again.",
+            who: "A family member, Jaipur",
+          },
+          {
+            quote: "I thought quitting was only about willpower. Sahi medical support ke saath, it finally stuck. Six months clean and still counting.",
+            who: "Patient, Jaipur",
+          },
+          {
+            quote: "As a wife I felt so alone in all of this. The family sessions gave me something I hadn't had in years — hope, and a plan.",
+            who: "A spouse, Jaipur",
+          },
+        ],
       },
       "child-adolescent": {
         title: "Child & Adolescent Psychiatry",
@@ -92,10 +112,16 @@ export const SERVICE_DETAILS = {
           "Parents guided as partners — practical ways to support at home.",
           "Coordination with school only if you wish, always with your consent.",
         ],
-        story: {
-          quote: "Mera beta mahino se chup tha, and I was so scared. With gentle sessions he slowly opened up — and I learned how to simply be there for him.",
-          who: "A parent, Jaipur",
-        },
+        stories: [
+          {
+            quote: "Mera beta mahino se chup tha, and I was so scared. With gentle sessions he slowly opened up — and I learned how to simply be there for him.",
+            who: "A parent, Jaipur",
+          },
+          {
+            quote: "The school kept calling about my daughter. Turned out she was anxious, not 'difficult'. Ab wo phir se muskurati hai.",
+            who: "A parent, Jaipur",
+          },
+        ],
       },
       "sexual-health": {
         title: "Sexual Health Counselling",
@@ -116,10 +142,16 @@ export const SERVICE_DETAILS = {
           "Care for both the physical and the emotional side of the concern.",
           "Couples included only if and when you want that.",
         ],
-        story: {
-          quote: "I carried this worry silently for years, too ashamed to ask anyone. One private, respectful conversation gave me the facts — and my confidence back.",
-          who: "Patient, Jaipur",
-        },
+        stories: [
+          {
+            quote: "I carried this worry silently for years, too ashamed to ask anyone. One private, respectful conversation gave me the facts — and my confidence back.",
+            who: "Patient, Jaipur",
+          },
+          {
+            quote: "I'd read a hundred scary things online. One honest conversation replaced all that fear with simple, clear facts.",
+            who: "Patient, Jaipur",
+          },
+        ],
       },
       "couples-family": {
         title: "Couples & Family Counselling",
@@ -140,10 +172,16 @@ export const SERVICE_DETAILS = {
           "Culturally aware guidance that honours your family structure.",
           "Sessions paced to what your family is comfortable with.",
         ],
-        story: {
-          quote: "We were one argument away from giving up. Sitting together in that room, we finally heard each other. Ab hum phir se baat karte hain.",
-          who: "A couple, Jaipur",
-        },
+        stories: [
+          {
+            quote: "We were one argument away from giving up. Sitting together in that room, we finally heard each other. Ab hum phir se baat karte hain.",
+            who: "A couple, Jaipur",
+          },
+          {
+            quote: "Ghar mein rozana ke jhagde se hum thak chuke the. We learned to actually listen instead of react. It quietly saved us.",
+            who: "A couple, Jaipur",
+          },
+        ],
       },
       "online-consultation": {
         title: "Online Consultations",
@@ -164,10 +202,16 @@ export const SERVICE_DETAILS = {
           "Simple booking over call or WhatsApp — no complicated setup.",
           "Dr. Soni will suggest an in-person visit only if it's truly needed.",
         ],
-        story: {
-          quote: "I live far from Jaipur and almost didn't reach out. The video consultation felt just as personal — jaise saamne baithe hon. It changed everything for me.",
-          who: "Patient, outside Jaipur",
-        },
+        stories: [
+          {
+            quote: "I live far from Jaipur and almost didn't reach out. The video consultation felt just as personal — jaise saamne baithe hon. It changed everything for me.",
+            who: "Patient, outside Jaipur",
+          },
+          {
+            quote: "Between work and the kids I could never find time. A video session late in the evening worked perfectly — and it was completely private.",
+            who: "Patient, Jaipur",
+          },
+        ],
       },
     },
   },
@@ -207,10 +251,20 @@ export const SERVICE_DETAILS = {
           "नींद, चिंता और उदासी के लिए व्यावहारिक, रोज़मर्रा के उपाय।",
           "लगातार फ़ॉलो-अप ताकि आपको इसे अकेले न संभालना पड़े।",
         ],
-        story: {
-          quote: "दो साल तक मैं समझता रहा कि यह भारीपन बस 'मैं' हूँ। कुछ ईमानदार बातचीत और सही देखभाल से, धीरे-धीरे सुबहें नामुमकिन लगनी बंद हो गईं। अब मैं फिर से अपने परिवार के साथ हँसता हूँ।",
-          who: "S., जयपुर",
-        },
+        stories: [
+          {
+            quote: "दो साल तक मैं समझता रहा कि यह भारीपन बस 'मैं' हूँ। कुछ ईमानदार बातचीत और सही देखभाल से, धीरे-धीरे सुबहें नामुमकिन लगनी बंद हो गईं। अब मैं फिर से अपने परिवार के साथ हँसता हूँ।",
+            who: "S., जयपुर",
+          },
+          {
+            quote: "मैं सबको कहता रहा 'मैं ठीक हूँ'। यहाँ मुझे दिखावा नहीं करना पड़ा। बस किसी ने सुन लिया, और वर्षों से ढोया बोझ हल्का हो गया।",
+            who: "M., जयपुर",
+          },
+          {
+            quote: "घबराहट मेरे पूरे दिन पर हावी रहती थी। अब मेरे पास आसान उपाय हैं जो सचमुच काम करते हैं — और मैं फिर से अपने मन का मालिक महसूस करता हूँ।",
+            who: "मरीज़, जयपुर",
+          },
+        ],
       },
       "de-addiction": {
         title: "नशा-मुक्ति उपचार",
@@ -231,10 +285,20 @@ export const SERVICE_DETAILS = {
           "रिलैप्स-रोकथाम और काउंसलिंग जो आपके परिवार और मूल्यों का सम्मान करती है।",
           "परिवार के लिए मार्गदर्शन कि कैसे मदद करें, बिना अपने प्रियजन को दूर धकेले।",
         ],
-        story: {
-          quote: "मेरे पति ने कई बार अकेले छोड़ने की कोशिश की। यहाँ किसी ने उन्हें शर्मिंदा नहीं किया। आज उसे 8 महीने हो गए — और हमारा घर फिर से घर जैसा लगता है।",
-          who: "एक परिवारजन, जयपुर",
-        },
+        stories: [
+          {
+            quote: "मेरे पति ने कई बार अकेले छोड़ने की कोशिश की। यहाँ किसी ने उन्हें शर्मिंदा नहीं किया। आज उसे 8 महीने हो गए — और हमारा घर फिर से घर जैसा लगता है।",
+            who: "एक परिवारजन, जयपुर",
+          },
+          {
+            quote: "मैं समझता था कि छोड़ना सिर्फ़ इच्छाशक्ति की बात है। सही मेडिकल सहारे के साथ, यह आख़िरकार टिक गया। छह महीने हो गए, और गिनती जारी है।",
+            who: "मरीज़, जयपुर",
+          },
+          {
+            quote: "एक पत्नी के रूप में मैं इसमें बहुत अकेली महसूस करती थी। फ़ैमिली सत्रों ने मुझे वह दिया जो वर्षों से नहीं था — उम्मीद, और एक योजना।",
+            who: "एक जीवनसाथी, जयपुर",
+          },
+        ],
       },
       "child-adolescent": {
         title: "बाल और किशोर मनोचिकित्सा",
@@ -255,10 +319,16 @@ export const SERVICE_DETAILS = {
           "अभिभावकों को साथी की तरह मार्गदर्शन — घर पर सहारा देने के व्यावहारिक तरीके।",
           "स्कूल के साथ समन्वय केवल तभी जब आप चाहें, हमेशा आपकी सहमति से।",
         ],
-        story: {
-          quote: "मेरा बेटा महीनों से चुप था, और मैं बहुत डरी हुई थी। सौम्य सत्रों से वह धीरे-धीरे खुलने लगा — और मैंने सीखा कि उसके लिए बस मौजूद कैसे रहूँ।",
-          who: "एक अभिभावक, जयपुर",
-        },
+        stories: [
+          {
+            quote: "मेरा बेटा महीनों से चुप था, और मैं बहुत डरी हुई थी। सौम्य सत्रों से वह धीरे-धीरे खुलने लगा — और मैंने सीखा कि उसके लिए बस मौजूद कैसे रहूँ।",
+            who: "एक अभिभावक, जयपुर",
+          },
+          {
+            quote: "स्कूल से मेरी बेटी के बारे में बार-बार फ़ोन आते थे। पता चला वह चिंतित थी, 'मुश्किल' नहीं। अब वह फिर से मुस्कुराती है।",
+            who: "एक अभिभावक, जयपुर",
+          },
+        ],
       },
       "sexual-health": {
         title: "यौन स्वास्थ्य परामर्श",
@@ -279,10 +349,16 @@ export const SERVICE_DETAILS = {
           "चिंता के शारीरिक और भावनात्मक, दोनों पहलुओं की देखभाल।",
           "दंपति केवल तभी शामिल जब और जैसे आप चाहें।",
         ],
-        story: {
-          quote: "मैंने यह चिंता वर्षों चुपचाप ढोई, किसी से पूछने में बहुत शर्म आती थी। एक निजी, सम्मानजनक बातचीत ने मुझे तथ्य दिए — और मेरा आत्मविश्वास लौटा दिया।",
-          who: "मरीज़, जयपुर",
-        },
+        stories: [
+          {
+            quote: "मैंने यह चिंता वर्षों चुपचाप ढोई, किसी से पूछने में बहुत शर्म आती थी। एक निजी, सम्मानजनक बातचीत ने मुझे तथ्य दिए — और मेरा आत्मविश्वास लौटा दिया।",
+            who: "मरीज़, जयपुर",
+          },
+          {
+            quote: "मैंने ऑनलाइन सौ डरावनी बातें पढ़ रखी थीं। एक ईमानदार बातचीत ने उस सारे डर की जगह सरल, स्पष्ट तथ्य दे दिए।",
+            who: "मरीज़, जयपुर",
+          },
+        ],
       },
       "couples-family": {
         title: "दंपत्ति और पारिवारिक परामर्श",
@@ -303,10 +379,16 @@ export const SERVICE_DETAILS = {
           "संस्कृति के अनुरूप मार्गदर्शन जो आपके परिवार की संरचना का सम्मान करता है।",
           "सत्र उस गति से जिसमें आपका परिवार सहज हो।",
         ],
-        story: {
-          quote: "हम बस एक झगड़े की दूरी पर थे हार मान लेने से। उस कमरे में साथ बैठकर, आख़िरकार हमने एक-दूसरे को सुना। अब हम फिर से बात करते हैं।",
-          who: "एक दंपत्ति, जयपुर",
-        },
+        stories: [
+          {
+            quote: "हम बस एक झगड़े की दूरी पर थे हार मान लेने से। उस कमरे में साथ बैठकर, आख़िरकार हमने एक-दूसरे को सुना। अब हम फिर से बात करते हैं।",
+            who: "एक दंपत्ति, जयपुर",
+          },
+          {
+            quote: "घर में रोज़ाना के झगड़ों से हम थक चुके थे। हमने प्रतिक्रिया देने के बजाय सचमुच सुनना सीखा। इसने चुपचाप हमें बचा लिया।",
+            who: "एक दंपत्ति, जयपुर",
+          },
+        ],
       },
       "online-consultation": {
         title: "ऑनलाइन कंसल्टेशन",
@@ -327,10 +409,16 @@ export const SERVICE_DETAILS = {
           "कॉल या WhatsApp पर आसान बुकिंग — कोई जटिल सेटअप नहीं।",
           "डॉ. सोनी इन-पर्सन मुलाक़ात केवल तभी सुझाएँगे जब सचमुच ज़रूरत हो।",
         ],
-        story: {
-          quote: "मैं जयपुर से दूर रहता हूँ और लगभग संपर्क ही नहीं किया। वीडियो कंसल्टेशन उतना ही व्यक्तिगत लगा — जैसे सामने बैठे हों। इसने मेरे लिए सब कुछ बदल दिया।",
-          who: "मरीज़, जयपुर के बाहर",
-        },
+        stories: [
+          {
+            quote: "मैं जयपुर से दूर रहता हूँ और लगभग संपर्क ही नहीं किया। वीडियो कंसल्टेशन उतना ही व्यक्तिगत लगा — जैसे सामने बैठे हों। इसने मेरे लिए सब कुछ बदल दिया।",
+            who: "मरीज़, जयपुर के बाहर",
+          },
+          {
+            quote: "काम और बच्चों के बीच मुझे कभी समय नहीं मिलता था। देर शाम की एक वीडियो सेशन बिल्कुल सही रही — और पूरी तरह निजी भी।",
+            who: "मरीज़, जयपुर",
+          },
+        ],
       },
     },
   },

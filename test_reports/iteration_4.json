@@ -1,0 +1,26 @@
+{
+  "summary": "Frontend-only verification of Self-Check placement/copy and result screen changes. All requested scenarios pass: section order (SelfCheck above Recognition), bilingual intro (heading, body, 3 benefits, disclaimer, single Start button showing BOTH 'Start Self-Check' and 'सेल्फ़-चेक शुरू करें'), Start -> Track -> 8 Questions -> Result flow, HIGH band on all opt-3 answers shows result-helpline + 3 numbered next steps + Call/WhatsApp/Book icon buttons, LOW band on all opt-0 answers hides helpline, lead submit (POST /api/leads) returns success and shows result-thanks, and Hindi lang-toggle translates intro heading/body/benefits/start-button and result content (including next-steps) into Hindi with the bilingual Start button flipping order (Hindi primary + English secondary).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Minor: The review request references [data-testid='testimonial-stack'] but Testimonials.jsx passes testId='testimonial' to SwipeStack, so the actual DOM testid is 'testimonial' (and card is 'testimonial-card'). If the intended contract is 'testimonial-stack', update Testimonials.jsx accordingly. Not a blocker – testimonials section still renders and swipes."
+  ],
+  "critical_code_review_comments": [
+    "SelfCheck.jsx is ~527 lines and mixes intro/track/question/result stages + lead form in one component. Consider splitting into sub-components (SelfCheckIntro, SelfCheckTrack, SelfCheckQuestion, SelfCheckResult) for maintainability – >500 line threshold.",
+    "Bilingual Start button uses CONTENT[lang === 'en' ? 'hi' : 'en'] inline – works, but the small secondary label uses text-sand/70 on teal which is readable; verify contrast on real devices.",
+    "Restart button in result stage only appears in the 'submitted' branch (thanks view). If a user reaches result but does NOT submit lead, there is no visible 'restart' control other than the browser back / re-answering. Consider adding a subtle 'Retake' link in the pre-submit result view as well."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (not retested)", "frontend": "100%"},
+  "test_credentials": "none",
+  "seed_data_creation": "One TEST_User lead submitted via /api/leads during HIGH-band flow verification.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All Self-Check placement, bilingual intro, HIGH/LOW banding, next-steps rendering, booking icon buttons, lead submit, and Hindi language toggle work end-to-end on the production preview URL. Only nit is testimonial testId naming ('testimonial' vs expected 'testimonial-stack').",
+  "rca of the issue": "N/A – no bugs found."
+}
