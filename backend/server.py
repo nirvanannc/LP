@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Header
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -27,6 +27,14 @@ EMAIL_BASE_URL = "https://integrations.emergentagent.com"
 EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
 EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
 LEAD_NOTIFY_EMAIL = os.environ.get("LEAD_NOTIFY_EMAIL", "dradityasoni1@gmail.com")
+
+# Instagram feed (Instagram API with Instagram Login). All optional until the clinic connects.
+IG_API_VERSION = os.environ.get("IG_API_VERSION", "v23.0")
+IG_GRAPH = f"https://graph.instagram.com/{IG_API_VERSION}"
+IG_ACCESS_TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "").strip()
+IG_USER_ID = os.environ.get("INSTAGRAM_USER_ID", "").strip()
+IG_ADMIN_TOKEN = os.environ.get("INSTAGRAM_ADMIN_TOKEN", "").strip()
+IG_FIELDS = "id,media_type,media_url,thumbnail_url,caption,permalink,timestamp,username"
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
@@ -174,6 +182,81 @@ async def create_lead(payload: LeadCreate):
 async def list_leads():
     docs = await db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
     return [Lead(**d) for d in docs]
+
+
+# ---------- Instagram feed ----------
+def _require_ig_admin(authorization: Optional[str]):
+    if not IG_ADMIN_TOKEN:
+        raise HTTPException(503, "Instagram admin token not configured")
+    token = (authorization or "").replace("Bearer ", "").strip()
+    if token != IG_ADMIN_TOKEN:
+        raise HTTPException(401, "Unauthorized")
+
+
+async def _ig_sync(limit: int = 30) -> int:
+    if not IG_ACCESS_TOKEN or not IG_USER_ID:
+        raise HTTPException(503, "Instagram is not connected yet")
+    params = {"fields": IG_FIELDS, "limit": min(limit, 50), "access_token": IG_ACCESS_TOKEN}
+    try:
+        async with httpx.AsyncClient(timeout=25) as http:
+            resp = await http.get(f"{IG_GRAPH}/{IG_USER_ID}/media", params=params)
+        resp.raise_for_status()
+        data = resp.json().get("data", [])
+    except Exception as e:
+        logger.error(f"Instagram sync failed: {str(e)}")
+        raise HTTPException(502, "Instagram request failed")
+
+    count = 0
+    for item in data:
+        doc = {
+            "media_id": item["id"],
+            "media_type": item.get("media_type"),
+            "media_url": item.get("media_url"),
+            "thumbnail_url": item.get("thumbnail_url"),
+            "caption": item.get("caption", ""),
+            "permalink": item.get("permalink"),
+            "timestamp": item.get("timestamp"),
+            "username": item.get("username"),
+            "synced_at": datetime.now(timezone.utc).isoformat(),
+        }
+        await db.instagram_media.update_one(
+            {"media_id": item["id"]},
+            {"$set": doc, "$setOnInsert": {"featured": False}},
+            upsert=True,
+        )
+        count += 1
+    return count
+
+
+@api_router.get("/instagram/feed")
+async def instagram_feed(limit: int = 6, featured_only: bool = False):
+    """Public, cached feed. Returns [] when not connected — frontend falls back to curated posts."""
+    query = {"featured": True} if featured_only else {}
+    docs = await db.instagram_media.find(query, {"_id": 0}).sort("timestamp", -1).to_list(max(1, min(limit, 50)))
+    if featured_only and not docs:
+        docs = await db.instagram_media.find({}, {"_id": 0}).sort("timestamp", -1).to_list(max(1, min(limit, 50)))
+    return {"connected": bool(IG_ACCESS_TOKEN and IG_USER_ID), "data": docs}
+
+
+@api_router.post("/instagram/sync")
+async def instagram_sync(authorization: Optional[str] = Header(None)):
+    _require_ig_admin(authorization)
+    return {"imported": await _ig_sync()}
+
+
+class FeatureBody(BaseModel):
+    featured: bool
+
+
+@api_router.patch("/instagram/media/{media_id}/feature")
+async def instagram_feature(media_id: str, body: FeatureBody, authorization: Optional[str] = Header(None)):
+    _require_ig_admin(authorization)
+    result = await db.instagram_media.update_one(
+        {"media_id": media_id}, {"$set": {"featured": body.featured}}
+    )
+    if not result.matched_count:
+        raise HTTPException(404, "Media not found")
+    return {"media_id": media_id, "featured": body.featured}
 
 
 app.include_router(api_router)
