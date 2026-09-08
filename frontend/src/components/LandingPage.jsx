@@ -29,8 +29,8 @@ export const LandingPage = () => {
   return (
     <>
       <Hero />
-      <Ribbon />
       <SelfCheck />
+      <Ribbon />
       <Recognition />
       <About />
       <Services />

@@ -36,7 +36,21 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
 - Booking form with concern dropdown + preferred time + embedded map. Email notify working.
 - Placeholder stats (15+ yrs, 1000+ patients) marked editable; AI-generated warm imagery.
 
+## Implemented (later sessions)
+- WhatsApp auto-reply setup + prefilled bilingual messages; service deep-dive pages (react-router);
+  swipeable anonymous story stacks (SwipeStack); "Insights from Dr. Soni" IG-style section with
+  modal viewer; Instagram auto-import backend (`/api/instagram/feed|sync`, falls back to
+  src/data/insights.js until INSTAGRAM_* keys are set in backend/.env).
+- 2026-09-08: SelfCheck redesigned as a large layered card stack directly below Hero
+  (parallax backdrop cards via useScroll/useTransform, whole front card clickable, tap hint,
+  single Start button). Result now shows a **Provisional impression** block (severity ×
+  track concern, explicitly non-diagnostic), gentle next steps, and a teal "Book Consultation"
+  invite that scrolls to #contact. Header gained a "Book Consultation" button (desktop + mobile
+  menu). VERIFIED by testing agent (iteration_6.json) in EN + HI.
+
 ## Backlog (P1/P2)
+- P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
+  INSTAGRAM_ADMIN_TOKEN from the user.
 - P1: Admin dashboard UI to view leads (currently JSON endpoint only).
 - P1: Swap placeholder photos/stats/affiliations with Dr. Soni's verified details.
 - P2: Inner pages per service ("Learn more" currently anchors to contact).

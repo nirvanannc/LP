@@ -1,0 +1,20 @@
+{
+  "summary": "Verified new SelfCheck layered card experience end-to-end. Section 'How have you been feeling lately?' sits directly below the Hero (DOM order: top, selfcheck, recognition-section, about). Layered card stack renders with 3 benefits, tap hint, disclaimer, and single prominent Start button. Clicking either the front card body OR the Start button advances to track selection (stopPropagation on button works). Full flow tested for track-general with all answer-opt-3 (8 questions) -> result_band='Please don't wait', result-provisional contains 'Provisional impression' and exact copy 'Notable signs often linked with anxiety and low mood', result-next-steps visible, result-helpline visible (high band only), result-book-invite visible and its result-book-consultation-btn scrolls smoothly to #contact. Lead form submission (Test User / 9876543210) succeeded and result-thanks appeared. GET /api/leads returned 7 items including the just-created lead (persistence verified). Second run (page reload) with track-deaddiction + all answer-opt-0 produced band 'Low signal', provisional copy 'Mild signs that a substance-use habit may be affecting daily life', and NO result-helpline (correct). Header header-book-btn visible on desktop and scrolls to #contact. On 390px mobile, header-book-btn is hidden (as designed), mobile-menu-toggle opens menu with mobile-book-btn that scrolls to #contact. Hindi lang-toggle switches heading to 'हाल में आप कैसा महसूस कर रहे हैं?' and provisional block uses Hindi ('प्रारंभिक अनुमान', 'हल्के संकेत कि नशे की आदत...'). No console/page errors captured; no horizontal overflow (doc scrollWidth == clientWidth == 390; card stack fits 350px inside 390 viewport).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "SelfCheck.jsx is ~595 lines — approaching the recommended 700-line cap. Consider splitting sub-stages (Intro / Track / Question / Result / LeadForm) into separate files for future maintainability.",
+    "Framer-motion warning 'container has a non-static position' comes from useScroll target ref on the card wrapper — the parent .relative wrapper is fine but the direct target div sets position via motion. Minor: harmless but noisy in console.",
+    "Start button uses e.stopPropagation() correctly to prevent card onClick from firing twice — good pattern."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "N/A (public site)",
+  "seed_data_creation": "Created 1 lead via POST /api/leads (Test User, 9876543210, general, high band). Total leads now 7.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "SelfCheck new layered card flow (iteration 6) is fully verified — do not re-test. Backend /api/leads POST+GET working. Header booking button + mobile menu booking button both scroll to #contact. Only a benign framer-motion useScroll positional warning appears in console.",
+  "rca of the issue": "No bugs found."
+}

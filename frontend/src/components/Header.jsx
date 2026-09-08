@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, WhatsappLogo, List, X, Translate } from "@phosphor-icons/react";
+import { Phone, WhatsappLogo, List, X, Translate, CalendarCheck } from "@phosphor-icons/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLang } from "@/context/LanguageContext";
 import { SITE, waLink, telLink } from "@/lib/site";
@@ -97,6 +97,14 @@ export const Header = () => {
             <Translate size={16} weight="bold" />
             {t.langLabel}
           </button>
+          <button
+            onClick={() => scrollTo("contact")}
+            className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-terracotta text-white px-4 py-2 text-sm font-medium hover:brightness-95 transition-[filter] duration-300"
+            data-testid="header-book-btn"
+          >
+            <CalendarCheck size={16} weight="bold" />
+            {t.common.book}
+          </button>
           <a
             href={telLink}
             className="grid place-items-center h-10 w-10 rounded-full bg-teal text-sand hover:bg-teal-deep transition-colors duration-300"
@@ -147,6 +155,16 @@ export const Header = () => {
                 {n.label}
               </button>
             ))}
+            <button
+              onClick={() => {
+                scrollTo("contact");
+                setOpen(false);
+              }}
+              className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-terracotta text-white px-5 py-3 text-sm font-medium"
+              data-testid="mobile-book-btn"
+            >
+              <CalendarCheck size={16} weight="bold" /> {t.common.book}
+            </button>
             <button
               onClick={toggle}
               className="mt-3 flex items-center gap-2 rounded-full border border-line px-4 py-2.5 text-sm text-teal w-fit"

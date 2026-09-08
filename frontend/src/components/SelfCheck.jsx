@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useMemo, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
   Brain,
   Wine,
@@ -36,6 +36,14 @@ export const SelfCheck = () => {
   const { t, lang } = useLang();
   const sc = t.selfcheck;
   const R = sc.results;
+
+  const cardRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: cardRef, offset: ["start end", "end start"] });
+  const cardY = useTransform(scrollYProgress, [0, 1], [34, -34]);
+  const backY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const midY = useTransform(scrollYProgress, [0, 1], [48, -48]);
+  const backRot = useTransform(scrollYProgress, [0, 1], [-5, -2]);
+  const midRot = useTransform(scrollYProgress, [0, 1], [3, 1]);
 
   const [stage, setStage] = useState("intro"); // intro | track | question | result
   const [track, setTrack] = useState(null);
@@ -167,8 +175,31 @@ export const SelfCheck = () => {
           <p className="mt-4 text-lg text-muted max-w-xl">{sc.sub}</p>
         </FadeUp>
 
-        <FadeUp delay={0.1} className="mt-10">
-          <div className="bg-surface border border-line rounded-[2rem] shadow-[0_20px_60px_rgba(18,67,64,0.08)] overflow-hidden">
+        <FadeUp delay={0.1} className="mt-12 sm:mt-16">
+          <div ref={cardRef} className="relative" data-testid="selfcheck-card-stack">
+            {/* layered backdrop cards */}
+            <motion.div
+              aria-hidden
+              style={{ y: backY, rotate: backRot }}
+              className="pointer-events-none absolute inset-x-6 sm:inset-x-10 -top-6 bottom-6 rounded-[2rem] bg-teal/10 border border-teal/10"
+            />
+            <motion.div
+              aria-hidden
+              style={{ y: midY, rotate: midRot }}
+              className="pointer-events-none absolute inset-x-3 sm:inset-x-5 -top-3 bottom-3 rounded-[2rem] bg-wheat/70 border border-line"
+            />
+            <motion.div
+              style={{ y: cardY }}
+              onClick={stage === "intro" ? () => setStage("track") : undefined}
+              role={stage === "intro" ? "button" : undefined}
+              tabIndex={stage === "intro" ? 0 : undefined}
+              onKeyDown={stage === "intro" ? (e) => e.key === "Enter" && setStage("track") : undefined}
+              whileHover={stage === "intro" ? { y: -6, scale: 1.005 } : undefined}
+              className={`relative bg-surface border border-line rounded-[2rem] shadow-[0_30px_80px_rgba(18,67,64,0.14)] overflow-hidden ${
+                stage === "intro" ? "cursor-pointer" : ""
+              }`}
+              data-testid="selfcheck-front-card"
+            >
             {/* progress bar */}
             {stage === "question" && (
               <div className="h-1.5 bg-wheat/60">
@@ -192,8 +223,8 @@ export const SelfCheck = () => {
                     className="flex-1 flex flex-col items-center justify-center text-center"
                     data-testid="selfcheck-intro"
                   >
-                    <span className="grid place-items-center h-16 w-16 rounded-full bg-teal/8 text-teal mb-5">
-                      <Sparkle size={30} weight="light" />
+                    <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] text-terracotta mb-4">
+                      <Sparkle size={14} weight="fill" /> {sc.tapHint}
                     </span>
                     <h3 className="font-serif text-3xl sm:text-4xl text-teal-deep leading-tight max-w-lg">
                       {sc.introTitle}
@@ -234,7 +265,10 @@ export const SelfCheck = () => {
 
                     {/* one prominent bilingual start button */}
                     <button
-                      onClick={() => setStage("track")}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setStage("track");
+                      }}
                       className="mt-8 inline-flex flex-col items-center rounded-full bg-teal text-sand px-10 py-4 hover:bg-teal-deep transition-colors duration-300 shadow-[0_10px_30px_rgba(18,67,64,0.18)]"
                       data-testid="selfcheck-start-btn"
                     >
@@ -392,6 +426,23 @@ export const SelfCheck = () => {
                             {bandData.headline}
                           </h3>
                           <p className="mt-3 text-[15px] text-ink/80 leading-relaxed">{bandData.body}</p>
+
+                          {/* provisional impression */}
+                          <div
+                            className="mt-5 rounded-xl bg-surface/80 border border-line px-4 py-3.5"
+                            data-testid="result-provisional"
+                          >
+                            <p className="text-[11px] uppercase tracking-[0.2em] text-terracotta">
+                              {R.provisionalTitle}
+                            </p>
+                            <p className="mt-1.5 text-[15px] text-teal-deep leading-snug">
+                              <span className="font-medium">
+                                {R.severity[band]} {R.provisionalConcern[track]}
+                              </span>
+                              <span className="text-muted">{R.provisionalTail}</span>
+                            </p>
+                          </div>
+
                           <p className="mt-4 text-[12px] text-muted italic flex items-start gap-1.5">
                             <ShieldCheck size={15} className="text-terracotta shrink-0 mt-0.5" />
                             {R.notDiagnosis}
@@ -432,6 +483,21 @@ export const SelfCheck = () => {
                               </li>
                             ))}
                           </ul>
+                        </div>
+
+                        {/* booking invite */}
+                        <div
+                          className="mt-6 rounded-2xl bg-teal text-sand p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4"
+                          data-testid="result-book-invite"
+                        >
+                          <p className="flex-1 text-[15px] leading-relaxed text-sand/90">{R.bookInvite}</p>
+                          <button
+                            onClick={() => scrollTo("contact")}
+                            className="inline-flex items-center justify-center gap-2 rounded-full bg-terracotta text-white px-6 py-3.5 font-medium hover:brightness-95 transition-[filter] duration-300 shrink-0"
+                            data-testid="result-book-consultation-btn"
+                          >
+                            <CalendarCheck size={18} weight="bold" /> {t.common.book}
+                          </button>
                         </div>
 
                         {/* lead form */}
@@ -519,6 +585,7 @@ export const SelfCheck = () => {
                 )}
               </AnimatePresence>
             </div>
+            </motion.div>
           </div>
         </FadeUp>
       </div>
