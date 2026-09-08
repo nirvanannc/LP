@@ -66,6 +66,14 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   score, provisional impression and the top 3 most-flagged answers, bilingual. Nothing sends
   until the visitor presses send. Verified in EN + HI via the built wa.me href.
 
+- 2026-06-08: **Hindi → Hinglish**. Per user request the Devanagari locale was removed entirely;
+  the second language is now **Hinglish in Roman script** (balanced Jaipur WhatsApp tone).
+  Toggle reads English ⇄ Hinglish (lang code stays `hi` internally). Rewrote the whole `hi`
+  block of `i18n.js`, the `hi` block of `data/serviceDetails.js`, all 6 `insights.js` captions,
+  plus inline error strings in SelfCheck/FinalCTA and the "Agli service" label. Verified by
+  testing agent (iteration_8.json): zero Devanagari left in source or rendered pages
+  (landing, all 6 service pages, insights modal, admin), English side unchanged.
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.

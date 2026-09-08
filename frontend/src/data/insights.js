@@ -13,9 +13,9 @@ export const INSIGHTS = [
         "If your mind won't switch off at night, you're not lazy or weak — your brain is asking for help. Poor sleep quietly feeds anxiety and low mood. A steady wind-down routine, less screen before bed, and a professional conversation when it lingers can change everything. Rest is not a reward you earn; it's a need you're allowed to meet.",
     },
     hi: {
-      title: "नींद भी एक दवा है",
+      title: "Neend bhi ek dawa hai",
       caption:
-        "अगर रात में आपका मन शांत नहीं होता, तो आप आलसी या कमज़ोर नहीं हैं — आपका दिमाग़ मदद माँग रहा है। ख़राब नींद चुपचाप चिंता और उदासी को बढ़ाती है। एक स्थिर रात-दिनचर्या, सोने से पहले कम स्क्रीन, और लंबे समय तक बनी रहे तो एक प्रोफेशनल बातचीत — सब कुछ बदल सकती है। आराम कोई इनाम नहीं; यह एक ज़रूरत है जिसे पूरा करना आपका हक़ है।",
+        "Agar raat mein aapka mann shaant nahi hota, toh aap aalsi ya kamzor nahi hain — aapka dimaag madad maang raha hai. Kharab neend chupchaap anxiety aur udaas mann ko badhati hai. Ek sthir wind-down routine, sone se pehle kam screen, aur agar yeh lambe waqt tak chale toh ek professional baat-cheet — sab kuch badal sakta hai. Aaram koi inaam nahi jo kamana pade; yeh ek zaroorat hai jise poora karna aapka haq hai.",
     },
   },
   {
@@ -28,9 +28,9 @@ export const INSIGHTS = [
         "In our families we're taught to 'stay strong' and keep things inside. But talking about your feelings is not weakness — it's one of the bravest things a person can do. You don't need the perfect words. Just start with someone you trust, over a cup of chai. The rest can follow, gently.",
     },
     hi: {
-      title: "बात करना कमज़ोरी नहीं है",
+      title: "Baat karna kamzori nahi hai",
       caption:
-        "हमारे परिवारों में हमें 'मज़बूत रहना' और बातें अंदर रखना सिखाया जाता है। पर अपनी भावनाओं के बारे में बात करना कमज़ोरी नहीं — यह सबसे हिम्मत भरे कामों में से एक है। आपको सही शब्दों की ज़रूरत नहीं। बस किसी भरोसेमंद के साथ, एक कप चाय पर शुरुआत करें। बाक़ी धीरे-धीरे आ जाएगा।",
+        "Hamare parivaaron mein humein 'mazboot rehna' aur baatein andar rakhna sikhaya jaata hai. Par apni feelings ke baare mein baat karna kamzori nahi — yeh sabse himmat wale kaamon mein se ek hai. Aapko perfect shabdon ki zaroorat nahi. Bas kisi bharosemand ke saath, ek cup chai par shuruaat kariye. Baaki dheere-dheere aa jaayega.",
     },
   },
   {
@@ -43,9 +43,9 @@ export const INSIGHTS = [
         "De-addiction is rarely a single dramatic moment — it's many small, brave choices, one day at a time. Relapses don't erase progress; they're part of many recovery journeys. What matters is that no one walks it alone, and that treatment is offered with dignity, never shame.",
     },
     hi: {
-      title: "रिकवरी धीरे-धीरे बढ़ती है",
+      title: "Recovery dheere-dheere badhti hai",
       caption:
-        "नशा-मुक्ति कोई एक नाटकीय पल नहीं होता — यह कई छोटे, हिम्मती फ़ैसले हैं, एक दिन में एक। दोबारा फिसलना प्रगति को मिटाता नहीं; यह कई रिकवरी सफ़रों का हिस्सा है। ज़रूरी यह है कि कोई इसे अकेले न चले, और इलाज सम्मान के साथ मिले, कभी शर्म के साथ नहीं।",
+        "Nasha-mukti koi ek dramatic pal nahi hota — yeh kai chhote, himmati faisle hain, ek din mein ek. Dobara fisalna progress ko mitata nahi; yeh kai recovery safaron ka hissa hai. Zaroori yeh hai ki koi ise akela na chale, aur ilaaj samman ke saath mile, sharam ke saath kabhi nahi.",
     },
   },
   {
@@ -58,9 +58,9 @@ export const INSIGHTS = [
         "When a child goes quiet, it rarely means 'nothing is wrong'. Instead of 'What happened?', try sitting beside them and saying 'I'm here, whenever you're ready.' Presence often opens more doors than questions. If the silence stays, gentle professional support can help you reach them.",
     },
     hi: {
-      title: "अपने किशोर से बात करना",
+      title: "Apne teenager se baat karna",
       caption:
-        "जब कोई बच्चा चुप हो जाता है, तो इसका मतलब यह नहीं कि 'सब ठीक है'। 'क्या हुआ?' पूछने के बजाय, उनके पास बैठकर कहिए 'मैं यहीं हूँ, जब भी तुम तैयार हो।' मौजूदगी अक्सर सवालों से ज़्यादा दरवाज़े खोलती है। अगर ख़ामोशी बनी रहे, तो सौम्य प्रोफेशनल सहारा उन तक पहुँचने में मदद कर सकता है।",
+        "Jab koi bachcha chup ho jaata hai, toh iska matlab yeh nahi ki 'sab theek hai'. 'Kya hua?' poochhne ki jagah, unke paas baithkar kahiye 'main yahin hoon, jab bhi tum tayyar ho.' Mojoodgi aksar sawaalon se zyada darwaze kholti hai. Agar chuppi bani rahe, toh narm professional sahara unhein samajhne mein madad kar sakta hai.",
     },
   },
   {
@@ -73,9 +73,9 @@ export const INSIGHTS = [
         "A racing heart, tight chest, restless thoughts — anxiety isn't 'all in your head'. It's your body's alarm system working overtime. A slow breath out, longer than the breath in, tells that alarm it's safe to settle. And if the alarm keeps ringing, that's a good reason to talk to someone — not to worry more.",
     },
     hi: {
-      title: "चिंता आपको क्या बता रही है",
+      title: "Anxiety aapko kya bata rahi hai",
       caption:
-        "तेज़ धड़कन, सीने में जकड़न, बेचैन विचार — चिंता 'सिर्फ़ दिमाग़ की बात' नहीं है। यह आपके शरीर का अलार्म ज़रूरत से ज़्यादा काम कर रहा है। साँस को धीरे छोड़ना, अंदर लेने से लंबा, उस अलार्म को बताता है कि अब सुरक्षित है। और अगर अलार्म बजता ही रहे, तो यह किसी से बात करने की एक अच्छी वजह है — और ज़्यादा चिंता करने की नहीं।",
+        "Tez dhadkan, seene mein jakdan, bechain vichaar — anxiety 'sirf dimaag ki baat' nahi hai. Yeh aapke shareer ka alarm zaroorat se zyada kaam kar raha hai. Saans ko dheere chhodna, andar lene se lamba, us alarm ko batata hai ki ab surakshit hai. Aur agar alarm bajta hi rahe, toh yeh kisi se baat karne ki achhi wajah hai — aur zyada chinta karne ki nahi.",
     },
   },
   {
@@ -88,9 +88,9 @@ export const INSIGHTS = [
         "Some days you'll hold it together, and some days you won't — both are human. Being strong doesn't mean never breaking; it means being honest when you're tired, and letting the right people help. Asking for support is not giving up. It's how healing quietly begins.",
     },
     hi: {
-      title: "हमेशा 'मज़बूत' रहना ज़रूरी नहीं",
+      title: "Hamesha 'mazboot' rehna zaroori nahi",
       caption:
-        "कुछ दिन आप सब संभाल लेंगे, और कुछ दिन नहीं — दोनों इंसानी हैं। मज़बूत होने का मतलब कभी न टूटना नहीं; इसका मतलब है थके होने पर ईमानदार रहना, और सही लोगों को मदद करने देना। सहारा माँगना हार मानना नहीं है। यहीं से चुपचाप उपचार शुरू होता है।",
+        "Kuch din aap sab sambhaal lenge, aur kuch din nahi — dono insaani hain. Mazboot hone ka matlab kabhi na tootna nahi; iska matlab hai thake hone par imaandaar rehna, aur sahi logon ko madad karne dena. Sahara maangna haar maanna nahi hai. Yahin se chupchaap healing shuru hoti hai.",
     },
   },
 ];

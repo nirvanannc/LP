@@ -205,7 +205,7 @@ export const ServiceDetail = () => {
             >
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.2em] text-muted">
-                  {lang === "hi" ? "अगली सेवा" : "Next service"}
+                  {lang === "hi" ? "Agli service" : "Next service"}
                 </span>
                 <span className="block font-serif text-xl sm:text-2xl text-teal-deep mt-0.5">
                   {next.title}

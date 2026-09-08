@@ -44,7 +44,7 @@ export const FinalCTA = () => {
     e.preventDefault();
     setErr("");
     if (!form.name.trim() || form.phone.replace(/\D/g, "").length < 10) {
-      setErr(lang === "hi" ? "कृपया नाम और सही 10-अंकों का नंबर भरें।" : "Please enter your name and a valid 10-digit number.");
+      setErr(lang === "hi" ? "Please naam aur sahi 10-digit number bharein." : "Please enter your name and a valid 10-digit number.");
       return;
     }
     setSubmitting(true);
@@ -59,7 +59,7 @@ export const FinalCTA = () => {
       });
       setDone(true);
     } catch {
-      setErr(lang === "hi" ? "कुछ गड़बड़ हुई। कृपया कॉल करें।" : "Something went wrong. Please call us.");
+      setErr(lang === "hi" ? "Kuch gadbad ho gayi. Please call karein." : "Something went wrong. Please call us.");
     } finally {
       setSubmitting(false);
     }

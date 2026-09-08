@@ -117,7 +117,7 @@ const LeadCard = ({ lead, onStatus }) => {
           <p className="text-[#F5F3EC] font-medium text-lg leading-tight">{lead.name}</p>
           <p className="text-[13px] text-[#F5F3EC]/50 mt-0.5">
             {when} · {lead.source === "self_check" ? "Self-check" : "Booking form"} ·{" "}
-            {lead.language === "hi" ? "हिंदी" : "English"}
+            {lead.language === "hi" ? "Hinglish" : "English"}
           </p>
         </div>
         <div className="relative">

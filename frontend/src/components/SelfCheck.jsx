@@ -128,7 +128,7 @@ export const SelfCheck = () => {
     e.preventDefault();
     setErr("");
     if (!name.trim() || phone.replace(/\D/g, "").length < 10) {
-      setErr(lang === "hi" ? "कृपया नाम और सही 10-अंकों का नंबर भरें।" : "Please enter your name and a valid 10-digit number.");
+      setErr(lang === "hi" ? "Please naam aur sahi 10-digit number bharein." : "Please enter your name and a valid 10-digit number.");
       return;
     }
     setSubmitting(true);
@@ -147,7 +147,7 @@ export const SelfCheck = () => {
       });
       setSubmitted(true);
     } catch (e2) {
-      setErr(lang === "hi" ? "कुछ गड़बड़ हुई। कृपया फिर कोशिश करें या कॉल करें।" : "Something went wrong. Please try again or call us.");
+      setErr(lang === "hi" ? "Kuch gadbad ho gayi. Please dobara koshish karein ya call karein." : "Something went wrong. Please try again or call us.");
     } finally {
       setSubmitting(false);
     }
