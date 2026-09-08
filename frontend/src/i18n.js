@@ -240,15 +240,16 @@ export const CONTENT = {
     testimonials: {
       chapter: "06",
       title: "In their own words",
-      sub: "Shared anonymously, with permission. Privacy is always protected.",
+      sub: "Real recovery stories, shared on camera with permission.",
       rating: "Rated 4.9 on Google",
-      items: [
-        { q: "Pehli baar kisi ne bina judge kiye meri baat suni. Aaj main bahut behtar hoon.", a: "R.K., Jaipur" },
-        { q: "My father finally agreed to treatment for his drinking. Doctor sahab ne poore parivaar ko sambhala.", a: "Patient's daughter, Jaipur" },
-        { q: "I was scared someone would find out. Sab kuch private raha — bilkul.", a: "S., Jaipur" },
-        { q: "Mere bete ne mahino baad khulke baat ki. We got our child back.", a: "A parent, Jaipur" },
-        { q: "Online consultation utni hi asaan aur helpful thi jitni clinic jaana.", a: "M.V., Jaipur" },
+      videos: [
+        { title: "“Recovery ho sakti hai”", label: "A recovery story" },
+        { title: "“Wapas apne jaisa mehsoos hota hai”", label: "Healing, step by step" },
+        { title: "“Aadat se azaadi mil gayi”", label: "Freedom from addiction" },
+        { title: "“Poora parivaar saath heal hua”", label: "A family's recovery" },
       ],
+      watchLabel: "Watch",
+      videoNote: "Shared voluntarily, with written consent. Your story is never shared without permission.",
     },
     faq: {
       chapter: "07",
@@ -296,6 +297,7 @@ export const CONTENT = {
       submitting: "Sending...",
       thanks: "Done — we'll call you back privately, soon. Thank you for trusting us.",
       privacy: "Confidential. Used only to call you back.",
+      prefillNote: "Filled in from your self-check — please review and change anything you like.",
       addressTitle: "Visit the clinic",
     },
     footer: {
@@ -541,15 +543,16 @@ export const CONTENT = {
     testimonials: {
       chapter: "06",
       title: "उनके अपने शब्दों में",
-      sub: "अनुमति के साथ, गुमनाम रूप से साझा किया गया। गोपनीयता हमेशा सुरक्षित रहती है।",
+      sub: "असली रिकवरी की कहानियाँ — अनुमति के साथ, कैमरे पर।",
       rating: "Google पर 4.9 रेटिंग",
-      items: [
-        { q: "पहली बार किसी ने बिना जज किए मेरी बात सुनी। आज मैं बहुत बेहतर हूँ।", a: "R.K., जयपुर" },
-        { q: "मेरे पिता आख़िरकार शराब के इलाज के लिए राज़ी हुए। डॉक्टर साहब ने पूरे परिवार को संभाला।", a: "मरीज़ की बेटी, जयपुर" },
-        { q: "मुझे डर था कि किसी को पता चल जाएगा। सब कुछ निजी रहा — बिल्कुल।", a: "S., जयपुर" },
-        { q: "मेरे बेटे ने महीनों बाद खुलकर बात की। हमें हमारा बच्चा वापस मिल गया।", a: "एक अभिभावक, जयपुर" },
-        { q: "ऑनलाइन कंसल्टेशन उतना ही आसान और मददगार था जितना क्लिनिक जाना।", a: "M.V., जयपुर" },
+      videos: [
+        { title: "“रिकवरी मुमकिन है”", label: "एक रिकवरी की कहानी" },
+        { title: "“फिर से अपने जैसा महसूस होता है”", label: "धीरे-धीरे बेहतर होना" },
+        { title: "“नशे की आदत से आज़ादी मिली”", label: "नशा-मुक्ति की राह" },
+        { title: "“पूरा परिवार साथ में ठीक हुआ”", label: "एक परिवार की रिकवरी" },
       ],
+      watchLabel: "देखें",
+      videoNote: "लिखित सहमति के साथ स्वेच्छा से साझा किया गया। आपकी कहानी कभी भी अनुमति के बिना साझा नहीं होती।",
     },
     faq: {
       chapter: "07",
@@ -576,6 +579,7 @@ export const CONTENT = {
       chapter: "08",
       title: "पहला कदम बस एक बातचीत है।",
       sub: "कोई दबाव नहीं। कोई लेबल नहीं। बस एक ईमानदार बातचीत, जब भी आप तैयार हों।",
+      prefillNote: "आपके सेल्फ-चेक से भरा गया — कृपया देख लें और जो चाहें बदल दें।",
       formTitle: "कॉलबैक का अनुरोध करें",
       nameLabel: "नाम (या आद्याक्षर)",
       namePh: "जैसे R. शर्मा",

@@ -19,6 +19,7 @@ import {
   ChatCircleDots,
 } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
+import { useBookingPrefill } from "@/context/PrefillContext";
 import { CONTENT } from "@/i18n";
 import { Chapter, FadeUp } from "@/components/Primitives";
 import { SITE, waLink, telLink } from "@/lib/site";
@@ -34,6 +35,7 @@ const scrollTo = (id) => {
 
 export const SelfCheck = () => {
   const { t, lang } = useLang();
+  const { setPrefill } = useBookingPrefill();
   const sc = t.selfcheck;
   const R = sc.results;
 
@@ -149,6 +151,19 @@ export const SelfCheck = () => {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const trackToConcern = { general: 0, deaddiction: 1, child: 2 };
+
+  const goToBooking = () => {
+    setPrefill({
+      name: name.trim(),
+      phone: phone.trim(),
+      concern: t.finalCTA.concerns[trackToConcern[track]] || "",
+      fromSelfCheck: true,
+      stamp: Date.now(),
+    });
+    scrollTo("contact");
   };
 
   const stepVariants = {
@@ -492,7 +507,7 @@ export const SelfCheck = () => {
                         >
                           <p className="flex-1 text-[15px] leading-relaxed text-sand/90">{R.bookInvite}</p>
                           <button
-                            onClick={() => scrollTo("contact")}
+                            onClick={goToBooking}
                             className="inline-flex items-center justify-center gap-2 rounded-full bg-terracotta text-white px-6 py-3.5 font-medium hover:brightness-95 transition-[filter] duration-300 shrink-0"
                             data-testid="result-book-consultation-btn"
                           >
@@ -552,7 +567,7 @@ export const SelfCheck = () => {
                               <a href={waLink(t.wa.selfcheck)} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-whatsapp">
                                 <WhatsappLogo size={18} weight="fill" className="text-terracotta" /> {t.common.whatsapp}
                               </a>
-                              <button onClick={() => scrollTo("contact")} className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-book">
+                              <button onClick={goToBooking} className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-book">
                                 <CalendarCheck size={18} weight="bold" className="text-terracotta" /> {t.common.bookOnline}
                               </button>
                             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Phone,
@@ -11,6 +11,7 @@ import {
   CaretDown,
 } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
+import { useBookingPrefill } from "@/context/PrefillContext";
 import { Chapter, FadeUp } from "@/components/Primitives";
 import { SITE, waLink, telLink } from "@/lib/site";
 import { submitLead } from "@/lib/api";
@@ -23,6 +24,19 @@ export const FinalCTA = () => {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [err, setErr] = useState("");
+
+  const { prefill } = useBookingPrefill();
+
+  useEffect(() => {
+    if (!prefill) return;
+    setForm((f) => ({
+      ...f,
+      name: prefill.name || f.name,
+      phone: prefill.phone || f.phone,
+      concern: prefill.concern || f.concern,
+    }));
+    setDone(false);
+  }, [prefill]);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -38,7 +52,7 @@ export const FinalCTA = () => {
       await submitLead({
         name: form.name.trim(),
         phone: form.phone.trim(),
-        source: "booking_form",
+        source: prefill?.fromSelfCheck ? "booking_form_selfcheck" : "booking_form",
         concern: form.concern,
         preferred_time: form.preferred_time,
         language: lang,
@@ -89,6 +103,17 @@ export const FinalCTA = () => {
               {!done ? (
                 <>
                   <h3 className="font-serif text-2xl sm:text-3xl text-teal-deep">{c.formTitle}</h3>
+                  {prefill?.fromSelfCheck && (
+                    <motion.p
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-3 flex items-start gap-2 rounded-2xl bg-wheat/50 border border-terracotta/25 px-4 py-3 text-[13px] text-teal-deep"
+                      data-testid="book-prefill-note"
+                    >
+                      <CheckCircle size={16} weight="fill" className="text-terracotta shrink-0 mt-0.5" />
+                      {c.prefillNote}
+                    </motion.p>
+                  )}
                   <form onSubmit={onSubmit} className="mt-6 grid gap-4">
                     <div>
                       <label className="text-[13px] text-muted">{c.nameLabel}</label>

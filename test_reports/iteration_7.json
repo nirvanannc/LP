@@ -1,0 +1,25 @@
+{
+  "summary": "Iteration 7 verified 4 new features end-to-end: (1) 4 video testimonials with posters + lightbox (open/close via button and Escape), (2) Dr. Soni real photo loads in Hero + About (customer-assets URL, naturalWidth>0), (3) EN + HI SelfCheck→Booking prefill handoff, (4) /admin/leads passcode-gated dashboard. Backend: 13/13 pytest tests pass in /app/backend/tests/test_admin.py — POST /api/admin/login (200 correct / 401 wrong), GET /api/admin/me (200 with token / 401 with garbage or no header), GET /api/leads (401 without auth / 200 list with 'status' field), PATCH /api/leads/{id}/status (200 valid + persistence via re-fetch, 400 invalid status, 404 unknown id, 401 without auth), POST /api/leads public still works for source=self_check and source=booking_form_selfcheck. Frontend: EN flow — 8 answers on general track → filled 'QA Prefill'/'9876543210' on result → tapped result-book-consultation-btn → booking form correctly prefilled (name='QA Prefill', phone='9876543210', concern='Anxiety / Depression'), book-prefill-note visible, book-submit-btn produced book-thanks; QA Prefill lead confirmed in admin dashboard. HI flow — lang toggle → general track → concern prefilled as 'चिंता / अवसाद', note='आपके सेल्फ-चेक से भरा गया — कृपया देख लें और जो चाहें बदल दें।', no crashes. Admin dashboard — /admin/leads shows only the gate (no marketing header/footer/mobile-cta), wrong passcode shows admin-login-error='Incorrect passcode', correct passcode 'SoniClinic@2026' unlocks admin-leads-list (12 cards). Filter chips work (admin-filter-new shows 10, admin-filter-all shows 12). Status dropdown change to 'contacted' persists after admin-refresh-btn (verified by re-reading select value). 'View N answers' toggle expands lead-answers-<id> panel. admin-logout-btn returns to gate. Landing page renders normally (header-book-btn, selfcheck-section, video-testimonials, final-cta-section, footer all present). No console errors beyond expected 401 during wrong-passcode test.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/test_admin.py",
+    "/app/backend/tests/test_leads.py",
+    "/app/test_reports/pytest/pytest_admin.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "SelfCheck.jsx still ~595 lines — same recommendation as iteration 6 to split into sub-stage components as future maintainability item.",
+    "AdminLeads.jsx (~343 lines) is well organized but the LeadCard sub-component could be moved to its own file for reuse in future dashboards.",
+    "Optimistic status update in AdminLeads.onStatus does not roll back on API failure — only surfaces error text. Minor: consider reverting local state if updateLeadStatus rejects.",
+    "PrefillContext keeps prefill in memory only — refreshing the page after result loses prefill. Not a bug (booking form already submitted before then), just a note."
+  ],
+  "updated_files": ["/app/backend/tests/test_admin.py"],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "Admin passcode: SoniClinic@2026 (from /app/memory/test_credentials.md)",
+  "seed_data_creation": "Created 1 booking-form_selfcheck lead ('QA Prefill' / 9876543210 / 'Anxiety / Depression') via UI submit + 3 additional leads via backend tests (TEST_admin_selfcheck, TEST_admin_booking, TEST_status_lead variants). Total leads in DB after this run: 12.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Iteration 7 is fully passing. All 4 new features (video testimonials + lightbox, real doctor photo, SelfCheck→Booking prefill (EN+HI), /admin/leads passcode dashboard with status updates+filters+answers-toggle) verified. Backend pytest suite lives at /app/backend/tests/test_admin.py (13 tests) and /app/backend/tests/test_leads.py — reuse both for regression. No open bugs.",
+  "rca of the issue": "No bugs found."
+}

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Header
+from fastapi import FastAPI, APIRouter, HTTPException, Header, Request, Depends
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -11,7 +11,9 @@ from typing import List, Optional, Annotated, Any
 from pydantic.functional_validators import BeforeValidator
 from bson import ObjectId
 import uuid
-from datetime import datetime, timezone
+import jwt
+import secrets
+from datetime import datetime, timezone, timedelta
 
 
 ROOT_DIR = Path(__file__).parent
@@ -35,6 +37,12 @@ IG_ACCESS_TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "").strip()
 IG_USER_ID = os.environ.get("INSTAGRAM_USER_ID", "").strip()
 IG_ADMIN_TOKEN = os.environ.get("INSTAGRAM_ADMIN_TOKEN", "").strip()
 IG_FIELDS = "id,media_type,media_url,thumbnail_url,caption,permalink,timestamp,username"
+
+# Admin (shared passcode) for the leads dashboard
+ADMIN_PASSCODE = os.environ["ADMIN_PASSCODE"]
+ADMIN_JWT_SECRET = os.environ["ADMIN_JWT_SECRET"]
+JWT_ALGORITHM = "HS256"
+ADMIN_SESSION_HOURS = 12
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
@@ -73,6 +81,39 @@ class Lead(LeadCreate):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     email_sent: bool = False
+    status: str = "new"  # new | contacted | booked | closed
+
+
+class AdminLogin(BaseModel):
+    passcode: str
+
+
+class LeadStatusBody(BaseModel):
+    status: str
+
+
+def _create_admin_token() -> str:
+    payload = {
+        "sub": "clinic-admin",
+        "type": "admin",
+        "exp": datetime.now(timezone.utc) + timedelta(hours=ADMIN_SESSION_HOURS),
+    }
+    return jwt.encode(payload, ADMIN_JWT_SECRET, algorithm=JWT_ALGORITHM)
+
+
+def require_admin(authorization: Optional[str] = Header(None)):
+    token = (authorization or "").replace("Bearer ", "").strip()
+    if not token:
+        raise HTTPException(401, "Not authenticated")
+    try:
+        payload = jwt.decode(token, ADMIN_JWT_SECRET, algorithms=[JWT_ALGORITHM])
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(401, "Session expired — please enter the passcode again")
+    except jwt.InvalidTokenError:
+        raise HTTPException(401, "Invalid session")
+    if payload.get("type") != "admin":
+        raise HTTPException(401, "Invalid session")
+    return payload
 
 
 # ---------- Email helper ----------
@@ -178,10 +219,49 @@ async def create_lead(payload: LeadCreate):
     return lead
 
 
+@api_router.post("/admin/login")
+async def admin_login(body: AdminLogin, request: Request):
+    ip = request.client.host if request.client else "unknown"
+    now = datetime.now(timezone.utc)
+    rec = await db.admin_login_attempts.find_one({"ip": ip})
+    if rec:
+        stale = (now - datetime.fromisoformat(rec["last"])).total_seconds() >= 900
+        if stale:
+            await db.admin_login_attempts.delete_one({"ip": ip})
+        elif rec.get("count", 0) >= 8:
+            raise HTTPException(429, "Too many attempts. Please try again in 15 minutes.")
+
+    if not secrets.compare_digest(body.passcode.strip(), ADMIN_PASSCODE):
+        await db.admin_login_attempts.update_one(
+            {"ip": ip},
+            {"$inc": {"count": 1}, "$set": {"last": now.isoformat()}},
+            upsert=True,
+        )
+        raise HTTPException(401, "Incorrect passcode")
+
+    await db.admin_login_attempts.delete_one({"ip": ip})
+    return {"token": _create_admin_token(), "expires_in": ADMIN_SESSION_HOURS * 3600}
+
+
+@api_router.get("/admin/me")
+async def admin_me(_admin=Depends(require_admin)):
+    return {"ok": True, "role": "admin"}
+
+
 @api_router.get("/leads", response_model=List[Lead])
-async def list_leads():
+async def list_leads(_admin=Depends(require_admin)):
     docs = await db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
     return [Lead(**d) for d in docs]
+
+
+@api_router.patch("/leads/{lead_id}/status")
+async def update_lead_status(lead_id: str, body: LeadStatusBody, _admin=Depends(require_admin)):
+    if body.status not in ("new", "contacted", "booked", "closed"):
+        raise HTTPException(400, "Invalid status")
+    result = await db.leads.update_one({"id": lead_id}, {"$set": {"status": body.status}})
+    if not result.matched_count:
+        raise HTTPException(404, "Lead not found")
+    return {"id": lead_id, "status": body.status}
 
 
 # ---------- Instagram feed ----------

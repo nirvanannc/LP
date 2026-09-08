@@ -48,10 +48,23 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   invite that scrolls to #contact. Header gained a "Book Consultation" button (desktop + mobile
   menu). VERIFIED by testing agent (iteration_6.json) in EN + HI.
 
+- 2026-06-08: **Video testimonials** — written quote stack replaced with 4 real patient
+  video testimonials (recovery-themed bilingual labels, ffmpeg-generated posters in
+  `/frontend/public/posters/`, click-to-play lightbox with Esc/close). `VideoTestimonials.jsx`.
+- 2026-06-08: **Real doctor photo** swapped into Hero + About (`IMAGES.drPortrait`).
+- 2026-06-08: **Booking prefill** — `PrefillContext` carries name/phone/concern from the
+  Self Check result into the booking form with a "from your self-check" note (EN + HI).
+- 2026-06-08: **Leads Dashboard** at `/admin/leads` — shared clinic passcode → 12h JWT,
+  lead cards with call/WhatsApp actions, risk band, expandable questionnaire answers,
+  status pipeline (new/contacted/booked/closed) + filters. Backend: `POST /api/admin/login`,
+  `GET /api/admin/me`, `GET /api/leads` (now protected), `PATCH /api/leads/{id}/status`,
+  brute-force lockout (8 tries / 15 min per IP). VERIFIED by testing agent (iteration_7.json,
+  100% backend + frontend; pytest suite at `/app/backend/tests/test_admin.py`).
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.
-- P1: Admin dashboard UI to view leads (currently JSON endpoint only).
+- P1: Admin dashboard — DONE (see 2026-06-08). Next: CSV export + lead notes field.
 - P1: Swap placeholder photos/stats/affiliations with Dr. Soni's verified details.
 - P2: Inner pages per service ("Learn more" currently anchors to contact).
 - P2: Real Google Reviews embed; privacy-policy page.

@@ -2,12 +2,11 @@ import React from "react";
 import { Star } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
 import { Chapter, FadeUp } from "@/components/Primitives";
-import { SwipeStack } from "@/components/SwipeStack";
+import { VideoTestimonials } from "@/components/VideoTestimonials";
 
 export const Testimonials = () => {
   const { t } = useLang();
   const tt = t.testimonials;
-  const items = tt.items.map((it) => ({ quote: it.q, attribution: it.a }));
 
   return (
     <section className="py-24 lg:py-32" data-testid="testimonials-section">
@@ -36,8 +35,8 @@ export const Testimonials = () => {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-          <div className="mt-16">
-            <SwipeStack items={items} variant="light" showStars testId="testimonial" />
+          <div className="mt-14">
+            <VideoTestimonials items={tt.videos} note={tt.videoNote} watchLabel={tt.watchLabel} />
           </div>
         </FadeUp>
       </div>
