@@ -155,6 +155,22 @@ export const SelfCheck = () => {
 
   const trackToConcern = { general: 0, deaddiction: 1, child: 2 };
 
+  const waSummaryText = () => {
+    const W = R.waSummary;
+    const lines = [W.intro, ""];
+    if (name.trim()) lines.push(`${W.name}: ${name.trim()}`);
+    lines.push(`${W.concern}: ${trackLabelFor(track)}`);
+    lines.push(`${W.score}: ${score}/${maxScore} (${R.severity[band]})`);
+    lines.push(`${W.impression}: ${R.severity[band]} ${R.provisionalConcern[track]}`);
+    const flagged = answers.filter((a) => a && a.value >= 2).slice(0, 3);
+    if (flagged.length) {
+      lines.push("", `${W.flagged}:`);
+      flagged.forEach((a) => lines.push(`• ${a.question} — ${a.answer}`));
+    }
+    lines.push("", W.outro);
+    return lines.join("\n");
+  };
+
   const goToBooking = () => {
     setPrefill({
       name: name.trim(),
@@ -515,6 +531,28 @@ export const SelfCheck = () => {
                           </button>
                         </div>
 
+                        {/* whatsapp summary */}
+                        <div
+                          className="mt-4 rounded-2xl border border-terracotta/25 bg-wheat/40 p-5 sm:p-6"
+                          data-testid="result-wa-summary"
+                        >
+                          <p className="text-[12px] uppercase tracking-[0.18em] text-terracotta">
+                            {R.waSummary.title}
+                          </p>
+                          <p className="mt-2 text-[14px] text-ink/80 leading-relaxed">
+                            {R.waSummary.body}
+                          </p>
+                          <a
+                            href={waLink(waSummaryText())}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1E6F5C] text-white px-6 py-3.5 font-medium hover:brightness-110 transition-[filter] duration-300"
+                            data-testid="result-wa-summary-btn"
+                          >
+                            <WhatsappLogo size={19} weight="fill" /> {R.waSummary.btn}
+                          </a>
+                        </div>
+
                         {/* lead form */}
                         <div className="mt-6">
                           <h4 className="font-medium text-teal-deep text-lg">{R.formTitle}</h4>
@@ -564,7 +602,7 @@ export const SelfCheck = () => {
                               <a href={telLink} className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-call">
                                 <Phone size={18} weight="fill" className="text-terracotta" /> {t.common.call}
                               </a>
-                              <a href={waLink(t.wa.selfcheck)} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-whatsapp">
+                              <a href={waLink(waSummaryText())} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-whatsapp">
                                 <WhatsappLogo size={18} weight="fill" className="text-terracotta" /> {t.common.whatsapp}
                               </a>
                               <button onClick={goToBooking} className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors" data-testid="result-book">
@@ -587,8 +625,8 @@ export const SelfCheck = () => {
                           <a href={telLink} className="inline-flex items-center gap-1.5 rounded-full bg-teal text-sand px-5 py-3 text-sm">
                             <Phone size={16} weight="fill" /> {t.common.call}
                           </a>
-                          <a href={waLink(t.wa.selfcheck)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-terracotta text-white px-5 py-3 text-sm">
-                            <WhatsappLogo size={16} weight="fill" /> {t.common.whatsapp}
+                          <a href={waLink(waSummaryText())} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-terracotta text-white px-5 py-3 text-sm" data-testid="thanks-wa-summary">
+                            <WhatsappLogo size={16} weight="fill" /> {R.waSummary.btn}
                           </a>
                         </div>
                         <button onClick={restart} className="mt-5 text-sm text-muted hover:text-teal underline underline-offset-4">

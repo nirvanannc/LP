@@ -61,6 +61,11 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   brute-force lockout (8 tries / 15 min per IP). VERIFIED by testing agent (iteration_7.json,
   100% backend + frontend; pytest suite at `/app/backend/tests/test_admin.py`).
 
+- 2026-06-08: **WhatsApp summary** — Self Check result has a "Send my summary on WhatsApp"
+  block (plus the options row + thanks screen) that opens WhatsApp pre-filled with concern,
+  score, provisional impression and the top 3 most-flagged answers, bilingual. Nothing sends
+  until the visitor presses send. Verified in EN + HI via the built wa.me href.
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.
