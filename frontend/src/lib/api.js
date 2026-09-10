@@ -39,6 +39,22 @@ export const updateLeadStatus = async (id, status) => {
   return data;
 };
 
+export const downloadLeadsCsv = async () => {
+  const { data, headers } = await axios.get(`${API}/leads/export.csv`, {
+    ...auth(),
+    responseType: "blob",
+  });
+  const match = /filename="?([^"]+)"?/.exec(headers["content-disposition"] || "");
+  const url = URL.createObjectURL(new Blob([data], { type: "text/csv" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = match ? match[1] : "leads.csv";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+};
+
 export const apiError = (e) => {
   const d = e?.response?.data?.detail;
   if (typeof d === "string") return d;

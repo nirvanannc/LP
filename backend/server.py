@@ -1,4 +1,5 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Header, Request, Depends
+from fastapi.responses import Response
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -11,6 +12,8 @@ from typing import List, Optional, Annotated, Any
 from pydantic.functional_validators import BeforeValidator
 from bson import ObjectId
 import uuid
+import csv
+import io
 import ipaddress
 import jwt
 import secrets
@@ -253,6 +256,33 @@ async def admin_me(_admin=Depends(require_admin)):
 async def list_leads(_admin=Depends(require_admin)):
     docs = await db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
     return [Lead(**d) for d in docs]
+
+
+@api_router.get("/leads/export.csv")
+async def export_leads_csv(_admin=Depends(require_admin)):
+    docs = await db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(5000)
+    fields = [
+        "created_at", "name", "phone", "status", "source", "language",
+        "track_label", "score", "max_score", "risk_band", "concern",
+        "preferred_time", "email_sent", "id",
+    ]
+    buf = io.StringIO()
+    writer = csv.writer(buf)
+    writer.writerow([
+        "Received", "Name", "Phone", "Status", "Source", "Language",
+        "Concern track", "Score", "Max score", "Risk band", "Concern",
+        "Preferred time", "Email sent", "Lead ID",
+    ])
+    for d in docs:
+        lead = Lead(**d)
+        writer.writerow([getattr(lead, f, "") if getattr(lead, f, None) is not None else "" for f in fields])
+
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return Response(
+        content=buf.getvalue(),
+        media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="dr-soni-leads-{stamp}.csv"'},
+    )
 
 
 @api_router.patch("/leads/{lead_id}/status")

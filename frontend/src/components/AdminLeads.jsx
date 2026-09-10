@@ -4,6 +4,7 @@ import {
   LockKey,
   SignOut,
   ArrowClockwise,
+  DownloadSimple,
   Phone,
   WhatsappLogo,
   CaretDown,
@@ -14,6 +15,7 @@ import {
   verifyAdmin,
   fetchLeads,
   updateLeadStatus,
+  downloadLeadsCsv,
   getAdminToken,
   clearAdminToken,
   apiError,
@@ -221,6 +223,19 @@ export default function AdminLeads() {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
+  const [exporting, setExporting] = useState(false);
+
+  const onExport = async () => {
+    setExporting(true);
+    setErr("");
+    try {
+      await downloadLeadsCsv();
+    } catch (e) {
+      setErr(apiError(e));
+    } finally {
+      setExporting(false);
+    }
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -284,6 +299,14 @@ export default function AdminLeads() {
             <h1 className="font-serif text-2xl text-[#F5F3EC] leading-tight">Leads</h1>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={onExport}
+              disabled={exporting}
+              className="inline-flex items-center gap-1.5 rounded-full bg-[#C87560] text-white px-4 h-10 text-[13px] font-medium hover:brightness-105 transition-[filter] disabled:opacity-60"
+              data-testid="admin-export-csv-btn"
+            >
+              <DownloadSimple size={15} weight="bold" /> {exporting ? "Preparing…" : "Export CSV"}
+            </button>
             <button
               onClick={load}
               className="grid place-items-center h-10 w-10 rounded-full border border-white/12 text-[#F5F3EC]/80 hover:bg-white/5 transition-colors"

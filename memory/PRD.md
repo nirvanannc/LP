@@ -81,6 +81,12 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   A visitor's manual toggle is remembered in `localStorage.clinic_lang` and always wins.
   Hero headline weight bumped to bold.
 
+- 2026-06-10: **CSV export** — `GET /api/leads/export.csv` (admin token required) streams all
+  leads with headers (Received, Name, Phone, Status, Source, Language, Concern track, Score,
+  Max score, Risk band, Concern, Preferred time, Email sent, Lead ID) as a dated attachment;
+  "Export CSV" button in the dashboard header. Verified: 401 without token, correct
+  Content-Disposition, and browser download named `dr-soni-leads-YYYY-MM-DD.csv`.
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.
