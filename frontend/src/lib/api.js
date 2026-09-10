@@ -8,6 +8,11 @@ export const submitLead = async (payload) => {
   return data;
 };
 
+export const detectLanguage = async () => {
+  const { data } = await axios.get(`${API}/geo`, { timeout: 4000 });
+  return data.language;
+};
+
 export const getAdminToken = () => localStorage.getItem(TOKEN_KEY);
 export const clearAdminToken = () => localStorage.removeItem(TOKEN_KEY);
 

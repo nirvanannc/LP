@@ -74,6 +74,13 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   testing agent (iteration_8.json): zero Devanagari left in source or rendered pages
   (landing, all 6 service pages, insights modal, admin), English side unchanged.
 
+- 2026-06-10: **Auto language default** — `GET /api/geo` resolves the visitor's country via
+  ipwho.is (keyless free tier, 1000 req/day, 7-day Mongo cache in `geo_cache`, fails open and
+  never blocks render). India → site opens in Hinglish; otherwise English. Browser fallback
+  (navigator.languages / Asia-Kolkata timezone) is used when the IP lookup is unavailable.
+  A visitor's manual toggle is remembered in `localStorage.clinic_lang` and always wins.
+  Hero headline weight bumped to bold.
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.

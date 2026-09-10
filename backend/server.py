@@ -11,6 +11,7 @@ from typing import List, Optional, Annotated, Any
 from pydantic.functional_validators import BeforeValidator
 from bson import ObjectId
 import uuid
+import ipaddress
 import jwt
 import secrets
 from datetime import datetime, timezone, timedelta
@@ -326,6 +327,81 @@ async def instagram_sync(authorization: Optional[str] = Header(None)):
 
 class FeatureBody(BaseModel):
     featured: bool
+
+
+# ---------- Geo (default language) ----------
+GEO_CACHE_TTL = 7 * 24 * 3600
+HINGLISH_COUNTRIES = {"IN"}
+
+
+def _client_ip(request: Request) -> Optional[str]:
+    candidates = []
+    host = request.client.host if request.client else None
+    if host:
+        candidates.append(host)
+    fwd = request.headers.get("x-forwarded-for", "")
+    candidates.extend(p.strip() for p in fwd.split(",") if p.strip())
+    for c in candidates:
+        try:
+            addr = ipaddress.ip_address(c.strip().strip("[]"))
+        except ValueError:
+            continue
+        if addr.is_global:
+            return str(addr)
+    return None
+
+
+async def _ip_lookup(ip: str) -> Optional[dict]:
+    try:
+        async with httpx.AsyncClient(timeout=httpx.Timeout(2.0, connect=1.0)) as http:
+            resp = await http.get(f"https://ipwho.is/{ip}", headers={"Accept": "application/json"})
+            resp.raise_for_status()
+            data = resp.json()
+    except Exception as e:
+        logger.warning(f"Geo lookup failed for {ip}: {e}")
+        return None
+    if data.get("success") is not True:
+        return None
+    return {
+        "country_code": data.get("country_code"),
+        "country": data.get("country"),
+        "region": data.get("region"),
+    }
+
+
+@api_router.get("/geo")
+async def geo(request: Request):
+    """Fail-open: always 200. language is only a default suggestion for the frontend."""
+    ip = _client_ip(request)
+    if not ip:
+        return {"ok": False, "language": "en", "source": "no-public-ip"}
+
+    now = int(datetime.now(timezone.utc).timestamp())
+    cached = await db.geo_cache.find_one({"ip": ip})
+    if cached and cached.get("expires_at", 0) > now:
+        cc = cached.get("country_code")
+        return {
+            "ok": True,
+            "country_code": cc,
+            "country": cached.get("country"),
+            "region": cached.get("region"),
+            "language": "hi" if cc in HINGLISH_COUNTRIES else "en",
+            "source": "cache",
+        }
+
+    result = await _ip_lookup(ip)
+    if not result:
+        return {"ok": False, "language": "en", "source": "lookup-failed"}
+
+    await db.geo_cache.replace_one(
+        {"ip": ip}, {"ip": ip, **result, "expires_at": now + GEO_CACHE_TTL}, upsert=True
+    )
+    return {
+        "ok": True,
+        **result,
+        "language": "hi" if result.get("country_code") in HINGLISH_COUNTRIES else "en",
+        "source": "provider",
+    }
 
 
 @api_router.patch("/instagram/media/{media_id}/feature")

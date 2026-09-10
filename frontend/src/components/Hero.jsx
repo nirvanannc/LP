@@ -52,7 +52,7 @@ export const Hero = () => {
             {t.hero.eyebrow}
           </motion.div>
 
-          <h1 className="font-serif text-teal-deep font-light tracking-tight text-[2.7rem] leading-[1.02] sm:text-6xl lg:text-[4.6rem]">
+          <h1 className="font-serif text-teal-deep font-bold tracking-tight text-[2.7rem] leading-[1.02] sm:text-6xl lg:text-[4.6rem]">
             <RevealLines lines={t.hero.lines} delay={0.25} />
           </h1>
 
