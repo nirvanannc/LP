@@ -92,6 +92,10 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   capped at 420px on mobile; privacy badge moved below the art so the artwork caption stays
   readable. Dr. Soni's photo remains in the About section.
 
+- 2026-06-11: **Hero doctor chip** — small avatar chip under the hero CTAs ("Your doctor" /
+  "Aapke doctor" + name + creds) using Dr. Soni's real photo; tapping it scrolls to About.
+  `data-testid="hero-doctor-chip"`. Verified at 1920px and 390px, no overflow.
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.

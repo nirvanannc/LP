@@ -105,6 +105,31 @@ export const Hero = () => {
             </a>
           </motion.div>
 
+          {/* doctor chip */}
+          <motion.button
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.35, duration: 0.7 }}
+            onClick={() => scrollTo("about")}
+            whileHover={{ y: -3 }}
+            className="mt-7 group inline-flex items-center gap-3 rounded-full border border-line bg-surface/80 backdrop-blur-sm pl-1.5 pr-5 py-1.5 text-left hover:border-terracotta/45 transition-colors"
+            data-testid="hero-doctor-chip"
+          >
+            <img
+              src={IMAGES.drPortrait}
+              alt="Dr. Aditya Soni"
+              className="h-11 w-11 rounded-full object-cover object-top ring-1 ring-line"
+              loading="eager"
+            />
+            <span className="leading-tight">
+              <span className="block text-[10px] uppercase tracking-[0.2em] text-terracotta">
+                {t.hero.doctorChip}
+              </span>
+              <span className="block font-serif text-[1.05rem] text-teal-deep">{t.about.name}</span>
+              <span className="block text-[11px] text-muted">{t.about.creds}</span>
+            </span>
+          </motion.button>
+
           {/* trust strip */}
           <motion.div
             initial={{ opacity: 0 }}

@@ -44,6 +44,7 @@ export const CONTENT = {
         "Baat karna kamzori nahi hai. Everything you share stays private — koi jaanega toh nahi, we promise.",
       cta: "Take the 2-Minute Self-Check",
       cta2: "Talk to us on WhatsApp",
+      doctorChip: "Your doctor",
       trust: [
         "15+ years experience",
         "MD Psychiatry, MBA",
@@ -359,6 +360,7 @@ export const CONTENT = {
         "Baat karna kamzori nahi hai. Aap jo bhi share karenge woh private rahega — koi jaanega toh nahi, promise.",
       cta: "2-Minute Self-Check lein",
       cta2: "WhatsApp par baat karein",
+      doctorChip: "Aapke doctor",
       trust: [
         "15+ saal ka experience",
         "MD Psychiatry, MBA",
