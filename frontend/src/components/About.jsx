@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { ShieldCheck, Certificate, HeartHalf } from "@phosphor-icons/react";
+import { ShieldCheck, Certificate, HeartHalf, Star } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
 import { Chapter, FadeUp } from "@/components/Primitives";
-import { IMAGES } from "@/lib/site";
+import { IMAGES, SITE } from "@/lib/site";
 
 const whyIcons = [ShieldCheck, Certificate, HeartHalf];
 
@@ -40,7 +40,7 @@ export const About = () => {
               <div className="overflow-hidden rounded-[2rem] rounded-bl-[6rem] border border-line shadow-[0_30px_80px_rgba(18,67,64,0.14)]">
                 <img
                   src={IMAGES.drPortrait}
-                  alt="Dr. Aditya Soni — MD Psychiatry, MBA, Associate Professor, Jaipur"
+                  alt="Dr. Aditya Soni — MD Psychiatry, MBA, Prof and Unit Head, Mahatma Gandhi Hospital, Jaipur"
                   className="w-full h-[440px] sm:h-[560px] object-cover object-top"
                   loading="lazy"
                 />
@@ -50,6 +50,21 @@ export const About = () => {
                 <p className="text-[11px] uppercase tracking-wide opacity-90 mt-1">years</p>
               </div>
             </motion.div>
+
+            <a
+              href={SITE.googleReviewUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-3 text-[14px] font-medium text-teal hover:border-terracotta/45 hover:bg-wheat/40 transition-colors"
+              data-testid="about-google-reviews-btn"
+            >
+              <span className="flex text-terracotta">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={13} weight="fill" />
+                ))}
+              </span>
+              {t.common.reviews}
+            </a>
           </div>
 
           {/* text */}

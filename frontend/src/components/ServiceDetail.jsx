@@ -60,7 +60,7 @@ export const ServiceDetail = () => {
   return (
     <div data-testid="service-detail-page">
       {/* Hero band */}
-      <section className="relative overflow-hidden bg-teal text-sand pt-32 sm:pt-36 pb-20 grain">
+      <section className="relative overflow-hidden bg-teal text-sand pt-40 sm:pt-44 pb-20 grain">
         <img
           src={IMAGES.jali}
           alt=""

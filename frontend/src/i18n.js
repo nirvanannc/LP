@@ -27,6 +27,11 @@ export const CONTENT = {
       book: "Book Consultation",
       bookOnline: "Book Online",
       privacy: "100% confidential",
+      reviews: "Read Google reviews",
+    },
+    banner: {
+      text: "Online consultation available via video call",
+      cta: "Call 9929300003 for an appointment",
     },
     wa: {
       general: "Namaste 🙏 I'd like to speak with Dr. Soni's clinic, privately. Could you please guide me?",
@@ -48,7 +53,7 @@ export const CONTENT = {
       trust: [
         "15+ years experience",
         "MD Psychiatry, MBA",
-        "Associate Professor",
+        "Prof & Unit Head, MGH Jaipur",
         "1000+ patients guided",
       ],
     },
@@ -209,7 +214,7 @@ export const CONTENT = {
       chapter: "03",
       kicker: "Meet your doctor",
       name: "Dr. Aditya Soni",
-      creds: "MD (Psychiatry), MBA · Associate Professor",
+      creds: "MD (Psychiatry), MBA · Prof and Unit Head, Mahatma Gandhi Hospital, Jaipur",
       bio: "Dr. Aditya Soni has spent over fifteen years sitting with people on their hardest days — quietly, without judgment. Alongside his practice in Jaipur, he teaches and researches as an associate professor, with a special focus on de-addiction, sexual health and child psychiatry. Patients often say the same thing after their first visit: 'I finally felt understood.'",
       stats: [
         { value: "15+", label: "Years in practice" },
@@ -343,6 +348,11 @@ export const CONTENT = {
       book: "Consultation book karein",
       bookOnline: "Online book karein",
       privacy: "100% confidential",
+      reviews: "Google reviews padhein",
+    },
+    banner: {
+      text: "Online consultation video call par uplabdh hai",
+      cta: "Appointment ke liye 9929300003 par call karein",
     },
     wa: {
       general: "Namaste 🙏 Main Dr. Soni ki clinic se privately baat karna chahta/chahti hoon. Please guide kar dijiye.",
@@ -364,7 +374,7 @@ export const CONTENT = {
       trust: [
         "15+ saal ka experience",
         "MD Psychiatry, MBA",
-        "Associate Professor",
+        "Prof & Unit Head, MGH Jaipur",
         "1000+ patients guided",
       ],
     },
@@ -526,7 +536,7 @@ export const CONTENT = {
       chapter: "03",
       kicker: "Apne doctor se miliye",
       name: "Dr. Aditya Soni",
-      creds: "MD (Psychiatry), MBA · Associate Professor",
+      creds: "MD (Psychiatry), MBA · Prof and Unit Head, Mahatma Gandhi Hospital, Jaipur",
       bio: "Dr. Aditya Soni ne pandrah saal se zyada waqt logon ke sabse mushkil dino mein unke saath baithkar bitaya hai — chupchaap, bina judge kiye. Jaipur mein practice ke saath-saath woh associate professor ke roop mein padhate aur research karte hain, khaas taur par de-addiction, sexual health aur child psychiatry mein. Pehli visit ke baad patients aksar ek hi baat kehte hain: 'aaj pehli baar samjha gaya mehsoos hua.'",
       stats: [
         { value: "15+", label: "Saal ki practice" },

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, WhatsappLogo, List, X, Translate, CalendarCheck } from "@phosphor-icons/react";
+import { Phone, WhatsappLogo, List, X, Translate, CalendarCheck, VideoCamera } from "@phosphor-icons/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLang } from "@/context/LanguageContext";
 import { SITE, waLink, telLink } from "@/lib/site";
@@ -45,14 +45,35 @@ export const Header = () => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 inset-x-0 z-50 transition-[background-color,box-shadow,padding] duration-500 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-[background-color,box-shadow] duration-500 ${
         solid
-          ? "bg-sand/80 backdrop-blur-xl border-b border-line py-2.5 shadow-[0_8px_30px_rgba(18,67,64,0.06)]"
-          : "bg-transparent py-4"
+          ? "bg-sand/80 backdrop-blur-xl border-b border-line shadow-[0_8px_30px_rgba(18,67,64,0.06)]"
+          : "bg-transparent"
       }`}
       data-testid="site-header"
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
+      {/* online consultation banner */}
+      <div className="bg-teal-deep text-sand" data-testid="online-consult-banner">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
+          <span className="inline-flex items-center gap-1.5 text-[12px] sm:text-[13px] text-sand/90">
+            <VideoCamera size={15} weight="fill" className="text-terracotta shrink-0" />
+            {t.banner.text}
+          </span>
+          <a
+            href={telLink}
+            className="text-[12px] sm:text-[13px] font-medium underline decoration-terracotta/60 underline-offset-4 hover:decoration-sand transition-colors"
+            data-testid="banner-call-link"
+          >
+            {t.banner.cta}
+          </a>
+        </div>
+      </div>
+
+      <div
+        className={`max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between gap-4 transition-[padding] duration-500 ${
+          solid ? "py-2.5" : "py-4"
+        }`}
+      >
         {/* Brand */}
         <button
           onClick={() => scrollTo("top")}

@@ -22,7 +22,7 @@ export const Hero = () => {
     <section
       id="top"
       ref={ref}
-      className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-40 pb-16 lg:pb-24 grain"
+      className="relative overflow-hidden pt-36 sm:pt-40 lg:pt-48 pb-16 lg:pb-24 grain"
       data-testid="hero-section"
     >
       {/* soft radial lighting */}

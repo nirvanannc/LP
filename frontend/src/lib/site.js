@@ -1,16 +1,19 @@
 export const SITE = {
   clinicName: "Dr. Aditya Soni Clinic",
   phone: "9929300003",
-  phoneDisplay: "+91 99293 00003",
+  phoneDisplay: "09929300003",
   whatsapp: "919929300003",
   email: "dradityasoni1@gmail.com",
-  addressLine: "Pratap Nagar, Jaipur, Rajasthan",
-  timings: "Mon – Sat · 10:00 AM – 7:00 PM",
+  addressLine:
+    "Raj Plaza, Kumbha Marg, Sector 8, Pratap Nagar, Sanganer, Jagatpura, Jaipur, Rajasthan 302033",
+  timings: "4:00 PM – 8:00 PM",
+  googleReviewUrl:
+    "https://www.google.com/maps/search/?api=1&query=Dr.+Aditya+Soni+Clinic+Raj+Plaza+Kumbha+Marg+Sector+8+Pratap+Nagar+Jaipur",
   helpline: "14416",
   helplineName: "Tele-MANAS (National Mental Health Helpline)",
   helplineAlt: "1800-891-4416",
   mapEmbed:
-    "https://www.google.com/maps?q=Pratap%20Nagar%2C%20Jaipur%2C%20Rajasthan&output=embed",
+    "https://www.google.com/maps?q=Raj%20Plaza%2C%20Kumbha%20Marg%2C%20Sector%208%2C%20Pratap%20Nagar%2C%20Jaipur%2C%20Rajasthan%20302033&output=embed",
 };
 
 export const VIDEO_TESTIMONIALS = [

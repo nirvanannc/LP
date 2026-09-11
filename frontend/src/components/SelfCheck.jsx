@@ -17,6 +17,7 @@ import {
   ClipboardText,
   Compass,
   ChatCircleDots,
+  Star,
 } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
 import { useBookingPrefill } from "@/context/PrefillContext";
@@ -551,6 +552,30 @@ export const SelfCheck = () => {
                           >
                             <WhatsappLogo size={19} weight="fill" /> {R.waSummary.btn}
                           </a>
+                        </div>
+
+                        <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+                          <a
+                            href={SITE.googleReviewUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-teal hover:bg-wheat/50 hover:border-terracotta/40 transition-colors"
+                            data-testid="result-google-reviews-btn"
+                          >
+                            <span className="flex text-terracotta">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} size={12} weight="fill" />
+                              ))}
+                            </span>
+                            {t.common.reviews}
+                          </a>
+                          <button
+                            onClick={restart}
+                            className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-sand/40 py-3.5 text-[14px] font-medium text-muted hover:text-teal hover:bg-wheat/50 transition-colors"
+                            data-testid="result-restart-btn"
+                          >
+                            {R.restart}
+                          </button>
                         </div>
 
                         {/* lead form */}

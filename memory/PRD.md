@@ -96,6 +96,15 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   "Aapke doctor" + name + creds) using Dr. Soni's real photo; tapping it scrolls to About.
   `data-testid="hero-doctor-chip"`. Verified at 1920px and 390px, no overflow.
 
+- 2026-06-11: **Clinic details + banner + Google reviews** — credentials changed to
+  "MD (Psychiatry), MBA · Prof and Unit Head, Mahatma Gandhi Hospital, Jaipur" (About, hero chip,
+  trust strip shows the short form); footer/contact now show timings 4:00 PM – 8:00 PM, full
+  Raj Plaza / Kumbha Marg address (map embed updated) and phone 09929300003; a slim top banner
+  in the header announces online video consultations with a tap-to-call link
+  (`data-testid="online-consult-banner"`); Google reviews buttons added under the About portrait
+  and at the end of the self-check result (`SITE.googleReviewUrl` — currently a Maps search link,
+  TO REPLACE with the clinic's exact Google review URL when the user shares it).
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.
