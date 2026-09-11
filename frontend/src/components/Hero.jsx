@@ -131,18 +131,18 @@ export const Hero = () => {
             transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="overflow-hidden rounded-[2rem] rounded-tr-[6rem] border border-line shadow-[0_30px_80px_rgba(18,67,64,0.16)]">
+            <div className="mx-auto max-w-[420px] lg:max-w-none overflow-hidden rounded-[2rem] rounded-tr-[6rem] border border-line bg-white shadow-[0_30px_80px_rgba(18,67,64,0.16)]">
               <img
-                src={IMAGES.drPortrait}
-                alt="Dr. Aditya Soni, psychiatrist in Jaipur, in a warm consultation setting"
-                className="w-full h-[420px] sm:h-[520px] object-cover object-top"
+                src={IMAGES.heroArt}
+                alt="Mental health illustration — it's okay to ask for help"
+                className="w-full aspect-square object-contain"
                 loading="eager"
               />
             </div>
-            {/* floating privacy badge */}
+            {/* privacy badge — kept below the art so the artwork's own caption stays readable */}
             <motion.div
               style={{ y: yBadge }}
-              className="absolute -left-3 sm:-left-8 bottom-8 bg-surface/90 backdrop-blur-md border border-line rounded-2xl px-4 py-3 shadow-[0_10px_30px_rgba(18,67,64,0.12)] max-w-[210px]"
+              className="mx-auto lg:mx-0 mt-5 w-fit bg-surface/95 backdrop-blur-md border border-line rounded-2xl px-4 py-3 shadow-[0_10px_30px_rgba(18,67,64,0.12)] max-w-[240px]"
             >
               <div className="flex items-center gap-2 text-teal">
                 <ShieldCheck size={20} weight="fill" className="text-terracotta shrink-0" />

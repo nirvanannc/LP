@@ -87,6 +87,11 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   "Export CSV" button in the dashboard header. Verified: 401 without token, correct
   Content-Disposition, and browser download named `dr-soni-leads-YYYY-MM-DD.csv`.
 
+- 2026-06-11: **Hero artwork** — hero image swapped to the user's "Mental Health · It's okay to
+  ask for help" illustration (`IMAGES.heroArt`), square `object-contain` so no text is cropped,
+  capped at 420px on mobile; privacy badge moved below the art so the artwork caption stays
+  readable. Dr. Soni's photo remains in the About section.
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.

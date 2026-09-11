@@ -37,6 +37,8 @@ export const VIDEO_TESTIMONIALS = [
 ];
 
 export const IMAGES = {
+  heroArt:
+    "https://customer-assets-lqy194kg.emergentagent.net/job_drsoni-jaipur/artifacts/vhitju5b_12.png",
   drPortrait:
     "https://customer-assets-lqy194kg.emergentagent.net/job_drsoni-jaipur/artifacts/09dj5g2o_ChatGPT%20Image%20Jul%2024%2C%202026%2C%2007_16_48%20PM.png",
   consult:
