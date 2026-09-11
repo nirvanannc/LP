@@ -15,6 +15,9 @@ export const SITE = {
     "https://www.google.com/maps?q=Raj%20Plaza%2C%20Kumbha%20Marg%2C%20Sector%208%2C%20Pratap%20Nagar%2C%20Jaipur%2C%20Rajasthan%20302033&output=embed",
 };
 
+export const HERO_VIDEO =
+  "https://customer-assets-lqy194kg.emergentagent.net/job_drsoni-jaipur/artifacts/doax0voh_WhatsApp%20Video%202026-09-11%20at%2018.32.47.mp4";
+
 export const VIDEO_TESTIMONIALS = [
   {
     id: "recovery-1",

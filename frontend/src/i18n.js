@@ -50,6 +50,8 @@ export const CONTENT = {
       cta: "Take the 2-Minute Self-Check",
       cta2: "Talk to us on WhatsApp",
       doctorChip: "Your doctor",
+      videoLabel: "A message from Dr. Soni",
+      videoCta: "Play video",
       trust: [
         "15+ years experience",
         "MD Psychiatry, MBA",
@@ -371,6 +373,8 @@ export const CONTENT = {
       cta: "2-Minute Self-Check lein",
       cta2: "WhatsApp par baat karein",
       doctorChip: "Aapke doctor",
+      videoLabel: "Dr. Soni ka ek sandesh",
+      videoCta: "Video chalayein",
       trust: [
         "15+ saal ka experience",
         "MD Psychiatry, MBA",

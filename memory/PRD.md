@@ -108,6 +108,13 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   `SITE.googleReviewUrl` = `https://www.google.com/maps?cid=11855348771608360738` (read-reviews
   view of the clinic's real Google listing, resolved from the user's g.page link).
 
+- 2026-06-11: **Hero video** — the hero media is now Dr. Soni's own video message
+  (`HERO_VIDEO` in `lib/site.js`, poster frame at `/posters/hero-doctor.jpg` generated with
+  ffmpeg). Shows as a poster with a play button (saves mobile data on a 14 MB clip) and plays
+  inline with controls on tap. Bilingual labels `hero.videoLabel` / `hero.videoCta`. The
+  "Mental Health / It's okay to ask for help" illustration is no longer shown in the hero
+  (`IMAGES.heroArt` retained in site.js if needed elsewhere).
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.

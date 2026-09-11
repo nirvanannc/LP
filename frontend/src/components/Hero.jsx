@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { WhatsappLogo, ArrowDown, ShieldCheck } from "@phosphor-icons/react";
+import { WhatsappLogo, ArrowDown, ShieldCheck, Play } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
 import { RevealLines } from "@/components/Primitives";
-import { IMAGES, waLink } from "@/lib/site";
+import { IMAGES, HERO_VIDEO, waLink } from "@/lib/site";
 
 const scrollTo = (id) => {
   const el = document.getElementById(id);
@@ -13,6 +13,7 @@ const scrollTo = (id) => {
 export const Hero = () => {
   const { t } = useLang();
   const ref = useRef(null);
+  const [playing, setPlaying] = useState(false);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const yImg = useTransform(scrollYProgress, [0, 1], [0, 90]);
   const yBadge = useTransform(scrollYProgress, [0, 1], [0, -50]);
@@ -156,13 +157,46 @@ export const Hero = () => {
             transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="mx-auto max-w-[420px] lg:max-w-none overflow-hidden rounded-[2rem] rounded-tr-[6rem] border border-line bg-white shadow-[0_30px_80px_rgba(18,67,64,0.16)]">
-              <img
-                src={IMAGES.heroArt}
-                alt="Mental health illustration — it's okay to ask for help"
-                className="w-full aspect-square object-contain"
-                loading="eager"
-              />
+            <div className="relative mx-auto max-w-[420px] lg:max-w-none overflow-hidden rounded-[2rem] rounded-tr-[6rem] border border-line bg-teal-deep shadow-[0_30px_80px_rgba(18,67,64,0.16)]">
+              {playing ? (
+                <video
+                  src={HERO_VIDEO}
+                  poster="/posters/hero-doctor.jpg"
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full aspect-[4/5] object-cover bg-black"
+                  data-testid="hero-video-player"
+                />
+              ) : (
+                <button
+                  onClick={() => setPlaying(true)}
+                  className="group/v relative block w-full text-left"
+                  data-testid="hero-video-play-btn"
+                  aria-label={t.hero.videoCta}
+                >
+                  <img
+                    src="/posters/hero-doctor.jpg"
+                    alt="Dr. Aditya Soni speaking at his Jaipur clinic"
+                    className="w-full aspect-[4/5] object-cover object-[50%_28%] transition-transform duration-700 group-hover/v:scale-[1.04]"
+                    loading="eager"
+                  />
+                  <span className="absolute inset-0 bg-gradient-to-t from-[#0A2523]/85 via-[#0A2523]/10 to-transparent" />
+                  <span className="absolute inset-0 grid place-items-center">
+                    <span className="grid place-items-center h-16 w-16 rounded-full bg-terracotta text-white shadow-[0_12px_34px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover/v:scale-110">
+                      <Play size={26} weight="fill" />
+                    </span>
+                  </span>
+                  <span className="absolute inset-x-0 bottom-0 p-5">
+                    <span className="block font-serif text-[1.35rem] text-sand leading-snug">
+                      {t.hero.videoLabel}
+                    </span>
+                    <span className="mt-1 inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.16em] text-sand/70">
+                      <Play size={11} weight="fill" /> {t.hero.videoCta}
+                    </span>
+                  </span>
+                </button>
+              )}
             </div>
             {/* privacy badge — kept below the art so the artwork's own caption stays readable */}
             <motion.div
