@@ -105,6 +105,9 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   and at the end of the self-check result (`SITE.googleReviewUrl` — currently a Maps search link,
   TO REPLACE with the clinic's exact Google review URL when the user shares it).
 
+  `SITE.googleReviewUrl` = `https://www.google.com/maps?cid=11855348771608360738` (read-reviews
+  view of the clinic's real Google listing, resolved from the user's g.page link).
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.

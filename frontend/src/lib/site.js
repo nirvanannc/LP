@@ -7,8 +7,7 @@ export const SITE = {
   addressLine:
     "Raj Plaza, Kumbha Marg, Sector 8, Pratap Nagar, Sanganer, Jagatpura, Jaipur, Rajasthan 302033",
   timings: "4:00 PM – 8:00 PM",
-  googleReviewUrl:
-    "https://www.google.com/maps/search/?api=1&query=Dr.+Aditya+Soni+Clinic+Raj+Plaza+Kumbha+Marg+Sector+8+Pratap+Nagar+Jaipur",
+  googleReviewUrl: "https://www.google.com/maps?cid=11855348771608360738",
   helpline: "14416",
   helplineName: "Tele-MANAS (National Mental Health Helpline)",
   helplineAlt: "1800-891-4416",
