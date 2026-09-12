@@ -125,6 +125,18 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   `result-call-invite` tel CTA with 09929300003 and safe/confidential/judgment-free wording,
   in EN and Hinglish. Verified by testing agent (iteration_9.json, frontend 100%).
 
+- 2026-06-12: **Video captions + self-check lead gate + Google Sheets sync.**
+  Captions: `scripts/generate_captions.py` (Whisper `whisper-1` via EMERGENT_LLM_KEY + gpt-5.4 for
+  translation/transliteration) produced `/frontend/public/captions/{recovery-1..4,hero-doctor}.{en,hi}.vtt`;
+  both players render two `<track>`s (English + Hinglish) defaulting to the site language.
+  Gate: after Q8 a `gate` stage asks name + phone (phone mandatory, "skip for now" link);
+  submitting saves the lead and reveals the result with `result-captured-note`; skipping keeps the
+  old in-result form. Sheets: `create_lead` now schedules `_sync_lead_to_sheet` as a BackgroundTask
+  posting to `GOOGLE_SHEETS_WEBHOOK_URL` (Apps Script web app, shared `GOOGLE_SHEETS_TOKEN`) —
+  fail-open, no-ops while the URL is empty, `sheet_synced` flag on the lead. Setup docs:
+  `/app/GOOGLE_SHEETS_SETUP.md` + `/app/GOOGLE_SHEETS_APPS_SCRIPT.gs`. **Waiting on the user for the
+  Apps Script web app URL.** Verified by testing agent (iteration_10.json, backend 18/18, frontend 100%).
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.

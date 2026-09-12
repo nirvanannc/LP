@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Header, Request, Depends
+from fastapi import FastAPI, APIRouter, HTTPException, Header, Request, Depends, BackgroundTasks
 from fastapi.responses import Response
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
@@ -85,6 +85,7 @@ class Lead(LeadCreate):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     email_sent: bool = False
+    sheet_synced: bool = False
     status: str = "new"  # new | contacted | booked | closed
 
 
@@ -207,6 +208,35 @@ async def _send_lead_email(lead: Lead) -> bool:
         return False
 
 
+async def _sync_lead_to_sheet(lead: Lead) -> None:
+    """Best effort: append the lead to the clinic's Google Sheet via an Apps Script web app."""
+    url = os.environ.get("GOOGLE_SHEETS_WEBHOOK_URL", "").strip()
+    if not url:
+        return
+    row = {
+        "token": os.environ.get("GOOGLE_SHEETS_TOKEN", ""),
+        "received": lead.created_at,
+        "name": lead.name,
+        "phone": lead.phone,
+        "source": lead.source,
+        "language": lead.language,
+        "concern_track": lead.track_label or "",
+        "score": "" if lead.score is None else f"{lead.score}/{lead.max_score}",
+        "risk_band": lead.risk_band or "",
+        "concern": lead.concern or "",
+        "preferred_time": lead.preferred_time or "",
+        "answers": " | ".join(f"{a.question} — {a.answer}" for a in (lead.answers or [])),
+        "lead_id": lead.id,
+    }
+    try:
+        async with httpx.AsyncClient(timeout=15, follow_redirects=True) as http:
+            resp = await http.post(url, json=row)
+        resp.raise_for_status()
+        await db.leads.update_one({"id": lead.id}, {"$set": {"sheet_synced": True}})
+    except Exception as e:
+        logger.error(f"Google Sheets sync failed for lead {lead.id}: {e}")
+
+
 # ---------- Routes ----------
 @api_router.get("/")
 async def root():
@@ -214,12 +244,13 @@ async def root():
 
 
 @api_router.post("/leads", response_model=Lead)
-async def create_lead(payload: LeadCreate):
+async def create_lead(payload: LeadCreate, background: BackgroundTasks):
     lead = Lead(**payload.model_dump())
     email_sent = await _send_lead_email(lead)
     lead.email_sent = email_sent
     doc = lead.model_dump()
     await db.leads.insert_one(doc)
+    background.add_task(_sync_lead_to_sheet, lead)
     return lead
 
 

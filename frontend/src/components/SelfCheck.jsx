@@ -48,7 +48,7 @@ export const SelfCheck = () => {
   const backRot = useTransform(scrollYProgress, [0, 1], [-5, -2]);
   const midRot = useTransform(scrollYProgress, [0, 1], [3, 1]);
 
-  const [stage, setStage] = useState("intro"); // intro | track | question | result
+  const [stage, setStage] = useState("intro"); // intro | track | question | gate | result
   const [track, setTrack] = useState(null);
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
@@ -59,6 +59,7 @@ export const SelfCheck = () => {
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [captured, setCaptured] = useState(false);
   const [err, setErr] = useState("");
 
   const questions = track ? sc.questions[track] : [];
@@ -101,7 +102,7 @@ export const SelfCheck = () => {
       }, 220);
     } else {
       setTimeout(() => {
-        setStage("result");
+        setStage("gate");
         setLocked(false);
       }, 260);
     }
@@ -122,7 +123,48 @@ export const SelfCheck = () => {
     setName("");
     setPhone("");
     setSubmitted(false);
+    setCaptured(false);
     setErr("");
+  };
+
+  const leadPayload = () => ({
+    name: name.trim() || "Not shared",
+    phone: phone.trim(),
+    source: "self_check",
+    track,
+    track_label: trackLabelFor(track),
+    score,
+    max_score: maxScore,
+    risk_band: band,
+    answers,
+    language: lang,
+  });
+
+  const handleGate = async (e) => {
+    e.preventDefault();
+    setErr("");
+    if (phone.replace(/\D/g, "").length < 10) {
+      setErr(
+        lang === "hi"
+          ? "Please sahi 10-digit number bharein."
+          : "Please enter a valid 10-digit phone number."
+      );
+      return;
+    }
+    setSubmitting(true);
+    try {
+      await submitLead(leadPayload());
+      setCaptured(true);
+      setStage("result");
+    } catch (e2) {
+      setErr(
+        lang === "hi"
+          ? "Kuch gadbad ho gayi. Please dobara koshish karein ya call karein."
+          : "Something went wrong. Please try again or call us."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -415,6 +457,80 @@ export const SelfCheck = () => {
                   </motion.div>
                 )}
 
+                {/* GATE — name + phone before the result */}
+                {stage === "gate" && (
+                  <motion.div
+                    key="gate"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex-1 flex flex-col justify-center"
+                    data-testid="selfcheck-gate"
+                  >
+                    <span className="grid place-items-center h-12 w-12 rounded-full bg-teal/10 text-teal">
+                      <ShieldCheck size={24} weight="fill" />
+                    </span>
+                    <h3 className="mt-5 font-serif text-2xl sm:text-3xl text-teal-deep leading-snug">
+                      {R.gate.title}
+                    </h3>
+                    <p className="mt-3 text-[15px] text-ink/75 leading-relaxed">{R.gate.sub}</p>
+
+                    <form onSubmit={handleGate} className="mt-6 grid gap-3">
+                      <div>
+                        <label className="text-[13px] text-muted">{R.gate.nameLabel}</label>
+                        <input
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder={R.gate.namePh}
+                          className="mt-1 w-full rounded-xl border border-line bg-sand/40 px-4 py-3 text-teal-deep outline-none focus:border-teal transition-colors"
+                          data-testid="gate-name-input"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[13px] text-muted">{R.gate.phoneLabel}</label>
+                        <input
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          inputMode="numeric"
+                          placeholder={R.gate.phonePh}
+                          className="mt-1 w-full rounded-xl border border-line bg-sand/40 px-4 py-3 text-teal-deep outline-none focus:border-teal transition-colors"
+                          data-testid="gate-phone-input"
+                        />
+                      </div>
+                      <p className="text-[12px] text-muted flex items-start gap-1.5">
+                        <ShieldCheck size={14} className="text-terracotta shrink-0 mt-0.5" />
+                        {R.gate.privacy}
+                      </p>
+                      {err && (
+                        <p className="text-[13px] text-[#B03A2E]" data-testid="gate-error">
+                          {err}
+                        </p>
+                      )}
+                      <button
+                        type="submit"
+                        disabled={submitting}
+                        className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-teal text-sand px-7 py-4 font-medium hover:bg-teal-deep transition-colors duration-300 disabled:opacity-60"
+                        data-testid="gate-submit-btn"
+                      >
+                        {submitting ? R.gate.submitting : R.gate.submit}
+                        <ArrowRight size={18} weight="bold" />
+                      </button>
+                    </form>
+
+                    <button
+                      onClick={() => {
+                        setErr("");
+                        setStage("result");
+                      }}
+                      className="mt-4 text-[13px] text-muted hover:text-teal underline underline-offset-4 self-center"
+                      data-testid="gate-skip-btn"
+                    >
+                      {R.gate.skip}
+                    </button>
+                  </motion.div>
+                )}
+
                 {/* RESULT */}
                 {stage === "result" && (
                   <motion.div
@@ -606,6 +722,17 @@ export const SelfCheck = () => {
                         </div>
 
                         {/* lead form */}
+                        {captured ? (
+                          <div
+                            className="mt-6 flex items-start gap-2.5 rounded-2xl border border-teal/25 bg-teal/6 px-5 py-4"
+                            data-testid="result-captured-note"
+                          >
+                            <CheckCircle size={18} weight="fill" className="text-teal shrink-0 mt-0.5" />
+                            <p className="text-[14px] text-teal-deep leading-snug">
+                              {R.gate.captured}
+                            </p>
+                          </div>
+                        ) : (
                         <div className="mt-6">
                           <h4 className="font-medium text-teal-deep text-lg">{R.formTitle}</h4>
                           <p className="text-[13px] text-muted mt-1">{R.formSub}</p>
@@ -645,8 +772,10 @@ export const SelfCheck = () => {
                               {submitting ? R.submitting : R.submit}
                             </button>
                           </form>
+                        </div>
+                        )}
 
-                          <div className="mt-6 pt-5 border-t border-line">
+                        <div className="mt-6 pt-5 border-t border-line">
                             <p className="text-[12px] uppercase tracking-[0.18em] text-terracotta text-center">
                               {R.optionsTitle}
                             </p>
@@ -662,7 +791,6 @@ export const SelfCheck = () => {
                               </button>
                             </div>
                           </div>
-                        </div>
                       </>
                     ) : (
                       <div className="flex-1 flex flex-col items-center justify-center text-center py-10" data-testid="result-thanks">

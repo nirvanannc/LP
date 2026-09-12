@@ -11,7 +11,7 @@ const scrollTo = (id) => {
 };
 
 export const Hero = () => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const ref = useRef(null);
   const [playing, setPlaying] = useState(false);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -167,7 +167,22 @@ export const Hero = () => {
                   playsInline
                   className="w-full aspect-[4/5] object-contain bg-teal-deep"
                   data-testid="hero-video-player"
-                />
+                >
+                  <track
+                    kind="captions"
+                    src="/captions/hero-doctor.en.vtt"
+                    srcLang="en"
+                    label="English"
+                    default={lang !== "hi"}
+                  />
+                  <track
+                    kind="captions"
+                    src="/captions/hero-doctor.hi.vtt"
+                    srcLang="hi"
+                    label="Hinglish"
+                    default={lang === "hi"}
+                  />
+                </video>
               ) : (
                 <button
                   onClick={() => setPlaying(true)}

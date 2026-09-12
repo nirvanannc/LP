@@ -2,8 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X, SpeakerHigh } from "@phosphor-icons/react";
 import { VIDEO_TESTIMONIALS } from "@/lib/site";
+import { useLang } from "@/context/LanguageContext";
 
-const Lightbox = ({ video, poster, label, title, onClose }) => {
+const Lightbox = ({ video, poster, captions, label, title, lang, onClose }) => {
   const ref = useRef(null);
   const [ratio, setRatio] = useState(9 / 16);
 
@@ -49,7 +50,22 @@ const Lightbox = ({ video, poster, label, title, onClose }) => {
           style={{ aspectRatio: ratio }}
           className="mx-auto block h-auto w-auto max-w-full max-h-[74vh] rounded-[1.5rem] bg-black object-contain shadow-[0_30px_90px_rgba(0,0,0,0.5)]"
           data-testid="video-lightbox-player"
-        />
+        >
+          <track
+            kind="captions"
+            src={`${captions}.en.vtt`}
+            srcLang="en"
+            label="English"
+            default={lang !== "hi"}
+          />
+          <track
+            kind="captions"
+            src={`${captions}.hi.vtt`}
+            srcLang="hi"
+            label="Hinglish"
+            default={lang === "hi"}
+          />
+        </video>
         <div className="mt-4 text-center">
           <p className="font-serif text-xl text-sand leading-snug">{title}</p>
           <p className="text-[13px] text-sand/60 mt-1">{label}</p>
@@ -68,6 +84,7 @@ const Lightbox = ({ video, poster, label, title, onClose }) => {
 };
 
 export const VideoTestimonials = ({ items, note, watchLabel }) => {
+  const { lang } = useLang();
   const [open, setOpen] = useState(null);
   const videos = VIDEO_TESTIMONIALS.map((v, i) => ({ ...v, ...(items[i] || {}) }));
 
@@ -123,6 +140,8 @@ export const VideoTestimonials = ({ items, note, watchLabel }) => {
           <Lightbox
             video={videos[open].src}
             poster={videos[open].poster}
+            captions={`/captions/${videos[open].id}`}
+            lang={lang}
             title={videos[open].title}
             label={videos[open].label}
             onClose={() => setOpen(null)}
