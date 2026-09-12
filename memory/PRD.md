@@ -137,6 +137,12 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   `/app/GOOGLE_SHEETS_SETUP.md` + `/app/GOOGLE_SHEETS_APPS_SCRIPT.gs`. **Waiting on the user for the
   Apps Script web app URL.** Verified by testing agent (iteration_10.json, backend 18/18, frontend 100%).
 
+- 2026-06-12: **Google Sheets sync LIVE.** `GOOGLE_SHEETS_WEBHOOK_URL` set to the clinic's Apps
+  Script web app (`/macros/s/AKfycbxKFaKyb…/exec`). Verified end-to-end: `POST /api/leads` →
+  background sync → Apps Script returns `{"ok":true}` and the lead is stored with
+  `sheet_synced: true`. Note: the library URL (`/macros/library/d/…`) is NOT used; only the
+  `/exec` deployment URL, and the deployment must be "Who has access: Anyone".
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.
