@@ -1,0 +1,24 @@
+{
+  "summary": "Frontend-only regression for video alignment bug fix and new self-check education/call-CTA copy. All targeted acceptance criteria pass: testimonial lightbox uses portrait ratio, backdrop is dark teal rgba(10,37,35,0.93), close/Escape work, player <=74vh with no horizontal overflow at 1920x800 and 390x844; hero player uses object-contain within its 4/5 card without overflow; 4 poster cards are equal height (364.5px desktop, 360.2px mobile) and align correctly; self-check result now shows track-specific education (anxiety/dependence/child) and a Phone CTA (09929300003, tel:+919929300003) with safe/confidential/judgment wording in EN and its Hinglish counterpart (surakshit, bina judgment) — with 0 Devanagari characters and no 'undefined'; provisional impression and not-a-diagnosis blocks still render for all 3 tracks; WA summary button opens https://wa.me/919929300003 with prefilled message, Google reviews href = https://www.google.com/maps?cid=11855348771608360738, retake resets to intro, and booking prefill flow (result-name-input, result-phone-input -> result-book-consultation-btn) populates book-name-input=R. Sharma, book-phone-input=9876543210, book-concern-select='Anxiety / Depression', shows book-prefill-note, submits successfully and displays book-thanks. Top banner and footer render correctly at both breakpoints with the new address, 09929300003 and 4:00 PM – 8:00 PM.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "VideoTestimonials Lightbox uses aspect-ratio from onLoadedMetadata with a default 9/16 fallback — this is correct for portrait-only sources, but if a truly landscape source is later added and metadata takes >1 tick, users would briefly see a portrait letterbox before it settles. Consider setting preload='metadata' on the <video> so the ratio state resolves immediately.",
+    "Hero.jsx keeps aspect-[4/5] container even after switching to actual video — since the video uses object-contain, portrait videos taller than 4:5 will letterbox top/bottom inside the card. Acceptable as designed (frame-fixed card), but note this is by design, not a bug.",
+    "Headless Chromium could not fetch customer-assets video metadata during automated runs, so intrinsic vs rendered aspect equality could not be measured programmatically — verification here is by element geometry (74vh cap, no horizontal overflow, correct aspectRatio style application). Recommend main agent verify visually or via a lightweight HEAD/HLS probe."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "test_credentials": "n/a (admin dashboard not touched)",
+  "seed_data_creation": "One booking lead created: R. Sharma / 9876543210 (concern: Anxiety / Depression, source: self_check track=general).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "iteration 9 covered: video-testimonial lightbox geometry (bg rgba(10,37,35,0.93), 74vh cap, no overflow at 1920x800 + 390x844), poster cards equal-height/4-col, hero video card object-contain, self-check education+call CTA in EN for all 3 tracks and Hinglish for general (0 Devanagari), WA summary/Google reviews/retake/booking prefill+thanks, top banner + footer at both breakpoints. Note: headless Chromium returns videoWidth=videoHeight=0 for customer-assets URLs, so intrinsic-vs-rendered aspect assertion is a soft check — verified indirectly via aspectRatio style value (0.5625/1) and no overflow.",
+  "rca of the issue": "n/a — this was a fix verification run; the previous letterbox issue is mitigated by dynamic aspect-ratio inline style + max-h-[74vh] + w-auto in the Lightbox, and by object-contain on the hero video."
+}

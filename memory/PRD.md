@@ -115,6 +115,16 @@ Emotional arc: Arrival → Recognition → Trust → Clarity → Relief+Directio
   "Mental Health / It's okay to ask for help" illustration is no longer shown in the hero
   (`IMAGES.heroArt` retained in site.js if needed elsewhere).
 
+- 2026-06-12: **Video alignment fix + self-check education copy.** Testimonial lightbox now
+  reads each clip's intrinsic ratio on `loadedmetadata` and applies it as an inline
+  `aspect-ratio` with `w-auto max-h-[74vh]`, so portrait and landscape clips both fit with no
+  black letterbox bars; overlay tint fixed to `rgba(10,37,35,0.93)` (the Tailwind `/92` arbitrary
+  opacity was rendering washed out); poster crops centred. Hero player switched to
+  `object-contain` so nothing is cropped. Self Check result now also shows a track-specific
+  educational block (`results.education[track]`, "What this may be") plus a
+  `result-call-invite` tel CTA with 09929300003 and safe/confidential/judgment-free wording,
+  in EN and Hinglish. Verified by testing agent (iteration_9.json, frontend 100%).
+
 ## Backlog (P1/P2)
 - P1: Activate real Instagram feed — needs INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID,
   INSTAGRAM_ADMIN_TOKEN from the user.

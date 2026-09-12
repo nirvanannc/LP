@@ -177,6 +177,22 @@ export const CONTENT = {
         optionsTitle: "Reach us the way that feels easiest",
         provisionalTitle: "Provisional impression",
         provisionalTail: " — a preliminary, non-clinical indication, not a confirmed diagnosis.",
+        education: {
+          general: {
+            name: "What this may be",
+            body: "A pattern like this is usually described as anxiety with depressive symptoms. It is a medical condition — not weakness, not a character flaw — linked to changes in brain chemistry, sleep and long-running stress. It also responds very well to treatment: with the right support, therapy and medication only when it's genuinely needed, most people feel noticeably lighter within a few weeks.",
+          },
+          deaddiction: {
+            name: "What this may be",
+            body: "This pattern is what doctors call substance dependence. The brain's reward system has adapted to the substance, which is exactly why willpower alone so often fails — it is a medical condition, not a moral failure. With medically supervised withdrawal, relapse-prevention counselling and the family brought in gently, long-term recovery is genuinely achievable.",
+          },
+          child: {
+            name: "What this may be",
+            body: "Changes like these usually point to an emotional or behavioural difficulty in a child or teenager — most often anxiety, low mood or an adjustment problem that shows up as silence, anger, poor sleep or stomach aches. Children rarely have words for distress, so it comes out in behaviour. Early, gentle help works remarkably well at this age.",
+          },
+        },
+        callInvite: "Talk it through on a call — safe, confidential and judgment-free.",
+        callNote: "No name needed to begin, and nothing is shared with anyone.",
         severity: { low: "Mild", moderate: "Moderate", high: "Notable" },
         provisionalConcern: {
           general: "signs often linked with anxiety and low mood",
@@ -501,6 +517,22 @@ export const CONTENT = {
         optionsTitle: "Jo tareeka sabse aasaan lage, usse hum tak pahunchein",
         provisionalTitle: "Prarambhik sanket",
         provisionalTail: " — yeh ek shuruaati, non-clinical ishaara hai, confirm diagnosis nahi.",
+        education: {
+          general: {
+            name: "Yeh kya ho sakta hai",
+            body: "Is tarah ke pattern ko aksar anxiety ke saath depressive symptoms kaha jaata hai. Yeh ek medical condition hai — na kamzori, na character ki kami — jo brain chemistry, neend aur lambe waqt ke stress se judi hoti hai. Aur iska ilaaj bahut achhe se hota hai: sahi sahare, counselling aur zaroorat padne par hi medication ke saath, zyadatar log kuch hafton mein saaf farq mehsoos karte hain.",
+          },
+          deaddiction: {
+            name: "Yeh kya ho sakta hai",
+            body: "Is pattern ko doctor substance dependence kehte hain. Dimaag ka reward system nashe ke hisaab se badal jaata hai — isi wajah se sirf willpower se chhodna aksar nahi tikta. Yeh ek medical condition hai, koi charitra ki kami nahi. Medically supervised withdrawal, relapse-prevention counselling aur parivaar ke narm sahare ke saath lambi recovery sach mein mumkin hai.",
+          },
+          child: {
+            name: "Yeh kya ho sakta hai",
+            body: "Aise badlaav aksar bachche ya teenager mein emotional ya behavioural pareshaani ka ishaara hote hain — zyadatar anxiety, low mood ya adjustment ki dikkat, jo chuppi, gusse, kharab neend ya pet dard ke roop mein dikhti hai. Bachchon ke paas apni takleef ke shabd nahi hote, isliye woh behaviour mein dikhti hai. Is umar mein jaldi mila narm sahara bahut achha kaam karta hai.",
+          },
+        },
+        callInvite: "Ek call par khulkar baat kar lein — surakshit, confidential aur bina judgment.",
+        callNote: "Shuru karne ke liye naam bhi zaroori nahi, aur kisi ke saath kuch share nahi hota.",
         severity: { low: "Halke", moderate: "Madhyam", high: "Dhyaan dene layak" },
         provisionalConcern: {
           general: "sanket jo aksar anxiety aur low mood se jude hote hain",

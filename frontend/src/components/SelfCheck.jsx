@@ -459,6 +459,33 @@ export const SelfCheck = () => {
                           </h3>
                           <p className="mt-3 text-[15px] text-ink/80 leading-relaxed">{bandData.body}</p>
 
+                          <p
+                            className="mt-3 text-[15px] text-ink/80 leading-relaxed"
+                            data-testid="result-education"
+                          >
+                            <span className="font-medium text-teal-deep">
+                              {R.education[track].name}:{" "}
+                            </span>
+                            {R.education[track].body}
+                          </p>
+
+                          <a
+                            href={telLink}
+                            className="mt-5 flex items-start gap-3 rounded-xl bg-teal text-sand px-4 py-3.5 hover:bg-teal-deep transition-colors"
+                            data-testid="result-call-invite"
+                          >
+                            <Phone size={22} weight="fill" className="text-wheat shrink-0 mt-0.5" />
+                            <span>
+                              <span className="block text-[14px] leading-snug">{R.callInvite}</span>
+                              <span className="block font-serif text-xl mt-0.5">
+                                {SITE.phoneDisplay}
+                              </span>
+                              <span className="block text-[12px] text-sand/70 mt-1">
+                                {R.callNote}
+                              </span>
+                            </span>
+                          </a>
+
                           {/* provisional impression */}
                           <div
                             className="mt-5 rounded-xl bg-surface/80 border border-line px-4 py-3.5"

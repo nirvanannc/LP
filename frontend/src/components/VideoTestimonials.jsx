@@ -5,6 +5,7 @@ import { VIDEO_TESTIMONIALS } from "@/lib/site";
 
 const Lightbox = ({ video, poster, label, title, onClose }) => {
   const ref = useRef(null);
+  const [ratio, setRatio] = useState(9 / 16);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -22,7 +23,7 @@ const Lightbox = ({ video, poster, label, title, onClose }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-[100] bg-[#0A2523]/92 backdrop-blur-md grid place-items-center p-4"
+      className="fixed inset-0 z-[100] bg-[rgba(10,37,35,0.93)] backdrop-blur-md grid place-items-center p-4"
       data-testid="video-lightbox"
     >
       <motion.div
@@ -31,7 +32,7 @@ const Lightbox = ({ video, poster, label, title, onClose }) => {
         exit={{ scale: 0.96, opacity: 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-[min(92vw,520px)]"
+        className="relative w-auto max-w-[min(92vw,760px)]"
       >
         <video
           ref={ref}
@@ -40,7 +41,13 @@ const Lightbox = ({ video, poster, label, title, onClose }) => {
           controls
           autoPlay
           playsInline
-          className="w-full max-h-[78vh] rounded-[1.5rem] bg-black object-contain shadow-[0_30px_90px_rgba(0,0,0,0.5)]"
+          preload="metadata"
+          onLoadedMetadata={(e) => {
+            const { videoWidth: w, videoHeight: h } = e.target;
+            if (w && h) setRatio(w / h);
+          }}
+          style={{ aspectRatio: ratio }}
+          className="mx-auto block h-auto w-auto max-w-full max-h-[74vh] rounded-[1.5rem] bg-black object-contain shadow-[0_30px_90px_rgba(0,0,0,0.5)]"
           data-testid="video-lightbox-player"
         />
         <div className="mt-4 text-center">
@@ -50,7 +57,7 @@ const Lightbox = ({ video, poster, label, title, onClose }) => {
         <button
           onClick={onClose}
           aria-label="Close"
-          className="absolute -top-3 -right-2 grid place-items-center h-10 w-10 rounded-full bg-sand text-teal-deep shadow-lg hover:bg-wheat transition-colors"
+          className="absolute -top-4 -right-3 sm:-top-3 sm:-right-5 grid place-items-center h-10 w-10 rounded-full bg-sand text-teal-deep shadow-lg hover:bg-wheat transition-colors"
           data-testid="video-lightbox-close"
         >
           <X size={18} weight="bold" />
@@ -84,7 +91,7 @@ export const VideoTestimonials = ({ items, note, watchLabel }) => {
                 src={v.poster}
                 alt={v.label}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover object-[50%_22%] transition-transform duration-700 group-hover:scale-[1.06]"
+                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.06]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A2523]/90 via-[#0A2523]/15 to-transparent" />
 

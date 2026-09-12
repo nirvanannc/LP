@@ -165,7 +165,7 @@ export const Hero = () => {
                   controls
                   autoPlay
                   playsInline
-                  className="w-full aspect-[4/5] object-cover bg-black"
+                  className="w-full aspect-[4/5] object-contain bg-teal-deep"
                   data-testid="hero-video-player"
                 />
               ) : (
